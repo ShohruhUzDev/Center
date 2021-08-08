@@ -35,7 +35,7 @@
                     <md:PackIcon  Kind="WindowMinimize"  FontWeight="ExtraBold" Foreground="#576673"  />
                 </Button>
                 <Button x:Name="maximize_btn" Click="maximize_btn_Click" Background="Transparent" Padding="0" Height="22" Width="25" BorderThickness="0">
-                    <md:PackIcon Name="maximize_icon" Kind="WindowMaximize"  FontWeight="ExtraBold" Foreground="#576673" />
+                    <md:PackIcon Name="maximize_icon" Kind="WindowRestore"  FontWeight="ExtraBold" Foreground="#576673" />
                 </Button>
                 <Button x:Name="close_btn" Click="close_btn_Click" Height="22" Width="25" Padding="0" BorderThickness="0" Background="Transparent">
                     <md:PackIcon Kind="WindowClose"  FontWeight="ExtraBold" Foreground="#576673"/>

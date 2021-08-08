@@ -23,5 +23,32 @@ namespace Center.Desktop.Pages
         {
             InitializeComponent();
         }
+
+        private void maximize_btn_Click(object sender, RoutedEventArgs e)
+        {
+            if (this.WindowState == WindowState.Normal)
+            {
+
+                this.WindowState = WindowState.Maximized;
+                maximize_icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
+            }
+            else
+
+            {
+                maximize_icon.Kind = MaterialDesignThemes.Wpf.PackIconKind.WindowMaximize;
+                this.WindowState = WindowState.Normal;
+            }
+
+        }
+        private void minimize_btn_Click(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+
+        }
+
+        private void close_btn_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
     }
 }
