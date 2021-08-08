@@ -88,31 +88,48 @@
 
                         <Button x:Name="Registration_btn"   Height="40" Margin="15 10 15 10" md:ShadowAssist.ShadowDepth="Depth4" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal">
-                                <md:PackIcon HorizontalAlignment="Left" Kind="RegisteredTrademark" Foreground="Black"  Height="35" Width="35"/>
-                                <TextBlock  Text="Registration" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" Margin="10 0 10 0"/>
+                                <md:PackIcon HorizontalAlignment="Left" Kind="Table" Foreground="Black"  Height="35" Width="35"/>
+                                <TextBlock  Text="Guruhlar" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" Margin="15 0 35 0"/>
                             </StackPanel>
                         </Button>
                         <Button x:Name="Rooms"  Height="40" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1" Width="220">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="175" Height="35">
 
-                                <md:PackIcon  HorizontalAlignment="Left" Kind="RoomService" Foreground="Black" Height="35" Width="35"/>
-                                <TextBlock Text="Rooms" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" Margin="10 0 10 0"/>
+                                <md:PackIcon  HorizontalAlignment="Left" Kind="Teacher" Foreground="Black" Height="35" Width="35"/>
+                                <TextBlock Text="O'qituvchilar" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" Margin="10 0 10 0"/>
                             </StackPanel>
                         </Button>
 
 
                         <Button x:Name="Emoloyee_btn"   Height="40"  Margin="15 10 15 10" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal" Width="179" >
-                                <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="Worker" Foreground="Black"  Height="35" Width="35"/>
-                                <TextBlock  Text="Staff" Margin="1 0 55 0" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" />
+                                <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="LearnOutline" Foreground="Black"  Height="35" Width="35"/>
+                                <TextBlock  Text="O'quvchilar" Margin="1 0 55 0" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" />
                             </StackPanel>
                         </Button>
-                        <Button x:Name="Guests_btn"   Height="40"  Margin="15 2 15 10" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
+                        
+                        
+                        
+                        
+                        <!--<Button x:Name="Admin_btn" VerticalAlignment="Bottom" Margin="10 250" Height="40" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal" Width="179" >
                                 <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="Hotel" Foreground="Black"  Height="35" Width="35"/>
                                 <TextBlock  Text="Guests" Margin="1 0 55 0" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" />
                             </StackPanel>
-                        </Button>
+                        </Button>-->
+                        <!--<Button x:Name="CreateRoom_btn" VerticalAlignment="Bottom"  HorizontalAlignment="Right" BorderThickness="0.1"   Height="60"   Background="Transparent" md:ButtonAssist.CornerRadius="10" Width="70" RenderTransformOrigin="0.514,0.458" >
+
+                            <Grid>
+                                <md:PackIcon Background="Transparent" Foreground="Black" HorizontalAlignment="Center" VerticalAlignment="Top"  Kind="Human" Height="45" Width="45"/>
+                                <Border CornerRadius="10" Height="44" BorderThickness="0.1" Width="50"  HorizontalAlignment="Center" VerticalAlignment="Center" RenderTransformOrigin="0.79,0.648">
+                                    --><!--<md:PackIcon  Kind="Plus" Background="Black"   Height="Auto"   Foreground="Snow"  RenderTransformOrigin="0.602,1.197" Margin="25,30,0,0" Width="21"/>--><!--
+
+                                </Border>
+
+                            </Grid>
+
+
+                        </Button>-->
                     </StackPanel>
                 </Grid>
 
@@ -120,7 +137,7 @@
 
 
 
-            <!--o'qituvchilar qismi-->
+            <!--asosiy qismi-->
             <Grid x:Name="asosiy_oyna_grid" Grid.Column="1" >
 
             </Grid>
