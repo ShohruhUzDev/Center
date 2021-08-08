@@ -13,24 +13,24 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Hotel_interfeys.UserControls
+namespace Center.Desktop.Pages.UserControls
 {
     /// <summary>
-    /// Interaction logic for Employee.xaml
+    /// Interaction logic for Guruhlar.xaml
     /// </summary>
-    public partial class Employee : UserControl
+    public partial class Guruhlar : UserControl
     {
-        public Employee()
+        public Guruhlar()
         {
             InitializeComponent();
         }
 
-        private void CreateRoom_btn_Click(object sender, RoutedEventArgs e)
-        {
-            EmployeeCreate employeeCreate = new EmployeeCreate();
-            employeeCreate.Show();
-            MainWindow mainWindow = new MainWindow();
-            mainWindow.Hide();
-        }
+        //private void CreateRoom_btn_Click(object sender, RoutedEventArgs e)
+        //{
+        //    EmployeeCreate employeeCreate = new EmployeeCreate();
+        //    employeeCreate.Show();
+        //    MainWindow mainWindow = new MainWindow();
+        //    mainWindow.Hide();
+        //}
     }
 }
