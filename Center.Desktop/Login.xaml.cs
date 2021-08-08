@@ -12,7 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 
-namespace Center.Desktop.Pages
+namespace Center.Desktop
 {
     /// <summary>
     /// Interaction logic for Login.xaml
