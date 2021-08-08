@@ -1,0 +1,75 @@
+﻿<Window x:Class="Center.Desktop.Pages.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Center.Desktop.Pages"
+        mc:Ignorable="d"
+        Title="Login" Height="450" Width="800">
+    <Grid >
+        <Grid.Background>
+            <ImageBrush ImageSource="Image/5.png" >
+
+            </ImageBrush>
+        </Grid.Background>
+        <!--<Image Source="Image/5.png" Stretch="Fill" RenderTransformOrigin="0.968,0.572" >-->
+        <!--
+       
+        
+        
+        
+        </Image>-->
+        <!--<Image Source="/Image/login.jpg" />-->
+
+        <Border Background="#011D2B" Opacity="0.8" BorderThickness="8" BorderBrush="#0C4395" Width="500" Height="370" CornerRadius="15">
+            <StackPanel >
+
+                <TextBlock Text="Login" FontSize="32" Foreground="Snow" HorizontalAlignment="Center" Margin="0 30 0 0 " Width="150" TextAlignment="Center"/>
+
+                <Border CornerRadius="10 "  Background="#2A4671" Margin="45 45 45 0">
+                    <StackPanel Orientation="Horizontal" >
+                        <TextBox  md:HintAssist.Hint="Login" Width="350"  Background="#2A4671" Foreground="Snow" VerticalContentAlignment="Center" Padding="3" FontSize="18" BorderThickness="0" md:ShadowAssist.ShadowDepth="Depth4">
+
+                        </TextBox>
+                        <md:PackIcon HorizontalAlignment="Right" Kind="User" Height="35" Width="35" Foreground="Snow"  Margin=" 0 10 0 0 "/>
+
+
+                    </StackPanel>
+
+                </Border>
+                <Border CornerRadius="10 "  Background="#2A4671" Margin="45 20 45 0">
+                    <StackPanel Orientation="Horizontal" >
+
+                        <!--<PasswordBox x:Name="MyPasswordBox" Password="{Binding Text, Mode=TwoWay, ElementName=MyTextBox}"/>
+                        <TextBox x:Name="MyTextBox"  Width="320" Text="{Binding Password, Mode=TwoWay, ElementName=MyPasswordBox}" Visibility="Collapsed" />-->
+
+                        <PasswordBox x:Name="parol_pasbox"    md:HintAssist.Hint="Parol" Width="320"  Background="#2A4671" Foreground="Snow" VerticalContentAlignment="Center" Padding="3" FontSize="18" BorderThickness="0" md:ShadowAssist.ShadowDepth="Depth4">
+
+                        </PasswordBox>
+
+                        <!--<md:PackIcon Name="eye_pasbox"  Kind="Eye" Height="25" VerticalAlignment="Center" Foreground="Snow" Cursor="Hand" Width="30"/>-->
+                        <md:PackIcon Kind="Lock" Height="35" Width="100" Foreground="Snow"  Margin=" 0 10 0 0 "/>
+
+
+                    </StackPanel>
+
+                </Border>
+
+                <!--<ComboBox Margin="45 15 45 5" Background="#011D2B"  >
+                    <ComboBoxItem>
+                        zovuch
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        admen
+                    </ComboBoxItem>
+                    <ComboBoxItem>
+                        o'qituvchi
+                    </ComboBoxItem>
+                </ComboBox>-->
+                <Button x:Name="Kirish_btn" Click="Kirish_btn_Click" FontSize="30"  md:ButtonAssist.CornerRadius="10" Margin="45 40 45 0" Height="45" Background="#0156CB" Content="OK">
+                </Button>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>
+
