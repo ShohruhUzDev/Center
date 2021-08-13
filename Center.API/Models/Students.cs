@@ -10,10 +10,10 @@ namespace Center.API.Models
     {
 
         [Key]
-
+     
         public int Id { get; set; }
 
-
+       
         [Required(ErrorMessage ="FirstName is Required")]
         [MaxLength(20, ErrorMessage ="FirstName length very long")]
         public string  FirstName { get; set; }
