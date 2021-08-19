@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Models
 {
-    public class Students
+    public class Student
     {
 
         [Key]
