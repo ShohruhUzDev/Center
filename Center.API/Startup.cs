@@ -30,6 +30,7 @@ namespace Center.API
         {
 
             services.AddControllers();
+           // services.AddScoped<ITeacherRepository, TeacherRepository>();
 
             services.AddDbContext<CenterContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
 
