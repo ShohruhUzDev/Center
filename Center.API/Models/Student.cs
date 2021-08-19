@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -10,7 +11,8 @@ namespace Center.API.Models
     {
 
         [Key]
-     
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
 
        
@@ -28,6 +30,7 @@ namespace Center.API.Models
         [Required(ErrorMessage = "Phone is Required")]
         [MaxLength(20, ErrorMessage = "Phone length very long")]
         public string  Phone { get; set; }
+        public List<Group> Groups { get; set; }
 
     }
 }
