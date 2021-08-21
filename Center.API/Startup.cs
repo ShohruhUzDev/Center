@@ -30,9 +30,13 @@ namespace Center.API
         {
 
             services.AddControllers();
-           // services.AddScoped<ITeacherRepository, TeacherRepository>();
+             services.AddTransient<ITeacherRepository, TeacherRepository>();
+            services.AddTransient<IGroupRepository, GroupRepository>();
+            services.AddTransient<IStudentRepository, StudentRepository>();
+           services.AddTransient<ISubjectRepository, SubjectRepository>();
 
-            services.AddDbContext<CenterContext>(options => options.UseNpgsql(Configuration.GetConnectionString("DefaultConnection")));
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddDbContext<CenterContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlserverConnection")));
 
             services.AddSwaggerGen(c =>
             {
