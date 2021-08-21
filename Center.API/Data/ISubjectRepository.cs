@@ -1,11 +1,18 @@
-﻿using System;
+﻿using Center.API.Models;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Center.API.Data
 {
-    interface ISubjectRepository
+   public  interface ISubjectRepository
     {
+        Task<IEnumerable<Subject>> GetAllSubjectsAsync();
+        Task<Subject> GetbyIdSubjectAsync(int id);
+        Task CreateSubjectAsync(Subject subject);
+        Task UpdateSubjectAsync(Subject subject);
+        Task DeleteSubject(int id);
+        bool ExistSubject(int id);
     }
 }
