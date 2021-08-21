@@ -3,14 +3,16 @@ using Center.API.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Center.API.Migrations
 {
     [DbContext(typeof(CenterContext))]
-    partial class CenterContextModelSnapshot : ModelSnapshot
+    [Migration("20210820121905_InitialCreat2")]
+    partial class InitialCreat2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -72,28 +74,6 @@ namespace Center.API.Migrations
                     b.ToTable("Students");
                 });
 
-            modelBuilder.Entity("Center.API.Models.StudentGroup", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<int>("GroupId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("StudentId")
-                        .HasColumnType("int");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.HasIndex("StudentId");
-
-                    b.ToTable("StudentGroups");
-                });
-
             modelBuilder.Entity("Center.API.Models.Subject", b =>
                 {
                     b.Property<int>("Id")
@@ -141,6 +121,21 @@ namespace Center.API.Migrations
                     b.ToTable("Teachers");
                 });
 
+            modelBuilder.Entity("GroupStudent", b =>
+                {
+                    b.Property<int>("GroupsId")
+                        .HasColumnType("int");
+
+                    b.Property<int>("StudentsId")
+                        .HasColumnType("int");
+
+                    b.HasKey("GroupsId", "StudentsId");
+
+                    b.HasIndex("StudentsId");
+
+                    b.ToTable("GroupStudent");
+                });
+
             modelBuilder.Entity("Center.API.Models.Group", b =>
                 {
                     b.HasOne("Center.API.Models.Subject", "Subject")
@@ -160,33 +155,19 @@ namespace Center.API.Migrations
                     b.Navigation("Teacher");
                 });
 
-            modelBuilder.Entity("Center.API.Models.StudentGroup", b =>
+            modelBuilder.Entity("GroupStudent", b =>
                 {
-                    b.HasOne("Center.API.Models.Group", "Group")
-                        .WithMany("StudentGroups")
-                        .HasForeignKey("GroupId")
+                    b.HasOne("Center.API.Models.Group", null)
+                        .WithMany()
+                        .HasForeignKey("GroupsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("Center.API.Models.Student", "Student")
-                        .WithMany("StudentGroups")
-                        .HasForeignKey("StudentId")
+                    b.HasOne("Center.API.Models.Student", null)
+                        .WithMany()
+                        .HasForeignKey("StudentsId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-
-                    b.Navigation("Group");
-
-                    b.Navigation("Student");
-                });
-
-            modelBuilder.Entity("Center.API.Models.Group", b =>
-                {
-                    b.Navigation("StudentGroups");
-                });
-
-            modelBuilder.Entity("Center.API.Models.Student", b =>
-                {
-                    b.Navigation("StudentGroups");
                 });
 
             modelBuilder.Entity("Center.API.Models.Subject", b =>
