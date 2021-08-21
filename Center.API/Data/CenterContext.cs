@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Data
 {
-    public class CenterContext:DbContext
+    public class CenterContext : DbContext
     {
         public CenterContext(DbContextOptions<CenterContext> options):base(options)
         {
@@ -17,5 +17,18 @@ namespace Center.API.Data
         public DbSet<Teacher> Teachers { get; set; }
         public DbSet<Student> Students { get; set; }
         public DbSet<Subject> Subjects { get; set; }
+        public DbSet<StudentGroup> StudentGroups { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<StudentGroup>()
+                .HasOne(i => i.Student)
+                .WithMany(u => u.StudentGroups)
+                .HasForeignKey(n => n.StudentId);
+            modelBuilder.Entity<StudentGroup>()
+               .HasOne(i => i.Group)
+               .WithMany(u => u.StudentGroups)
+               .HasForeignKey(n => n.GroupId);
+        }
     }
 }
