@@ -43,12 +43,13 @@ namespace Center.API.Data
                  .ThenInclude(t => t.Student)
                  .FirstOrDefaultAsync(h => h.Id == teacherId);
                 
-            var studetnlist=student
+            var studetnlist=student  
         }
 
         public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
         {
             return await _centerContext.Teachers.ToListAsync();
+            Math.Pow()
         }
 
         public Task<IEnumerable<Group>> GetAsllGroupsByTeacherId(int teacherId)
