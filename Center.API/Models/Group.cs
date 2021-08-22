@@ -24,8 +24,12 @@ namespace Center.API.Models
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        public List<Student> Students { get; set; } = new List<Student>();
+        public virtual ICollection<StudentGroup> StudentGroups { get; set; }
 
+        public Group()
+        {
+            StudentGroups = new List<StudentGroup>();
+        }
 
     }
 
