@@ -20,7 +20,7 @@ namespace Center.API.Models
 
         [Required(ErrorMessage = "Price is Required")]
        
-        public decimal Price { get; set; }
+        public int Price { get; set; }
 
 
         public List<Group> Groups { get; set; }
