@@ -36,20 +36,20 @@ namespace Center.API.Data
             return _centerContext.Teachers.Any(i => i.Id == id);
         }
 
-        public Task<IEnumerable<Student>> GetAllStudentsByTeacherId(int teacherId)
-        {
-            var students = _centerContext.Teachers.Include(i => i.Groups)
-                 .ThenInclude(u => u.StudentGroups)
-                 .ThenInclude(t => t.Student)
-                 .FirstOrDefaultAsync(h => h.Id == teacherId);
-                
-            var studetnlist=student  
-        }
+        //public Task<IEnumerable<Student>> GetAllStudentsByTeacherId(int teacherId)
+        //{
+        //    var students = _centerContext.Teachers.Include(i => i.Groups)
+        //         .ThenInclude(u => u.StudentGroups)
+        //         .ThenInclude(t => t.Student)
+        //         .FirstOrDefaultAsync(h => h.Id == teacherId);
+
+        //    var studetnlist = student;
+        //}
 
         public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
         {
             return await _centerContext.Teachers.ToListAsync();
-            Math.Pow()
+           
         }
 
         public Task<IEnumerable<Group>> GetAsllGroupsByTeacherId(int teacherId)

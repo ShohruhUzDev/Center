@@ -14,7 +14,7 @@ namespace Center.API.Data
         Task UpdateTeacherAsync(Teacher teacher);
         Task DeleteTeacher(int id);
         bool ExistTeacher(int id);
-        Task<IEnumerable<Student>> GetAllStudentsByTeacherId(int teacherId);
+     //   Task<IEnumerable<Student>> GetAllStudentsByTeacherId(int teacherId);
         Task<IEnumerable<Group>> GetAsllGroupsByTeacherId(int teacherId);
     }
 }

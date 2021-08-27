@@ -8,13 +8,13 @@
         mc:Ignorable="d"
         Title="Login" Height="450" Width="800">
     <Grid >
-        <!--<Grid.Background>
+        <Grid.Background>
             
-            --><!--<ImageBrush ImageSource="Images/5.png"  >
+            <ImageBrush ImageSource="Images/5.png"  >
 
-            </ImageBrush>--><!--
+            </ImageBrush>
 
-        </Grid.Background>-->
+        </Grid.Background>
        
 
         
