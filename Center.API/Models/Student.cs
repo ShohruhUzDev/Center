@@ -30,10 +30,10 @@ namespace Center.API.Models
         [Required(ErrorMessage = "Phone is Required")]
         [MaxLength(20, ErrorMessage = "Phone length very long")]
         public string  Phone { get; set; }
-        public virtual ICollection<StudentGroup> StudentGroups { get; set; }
+        public  ICollection<Group> Groups { get; set; }
         public Student()
         {
-            StudentGroups = new List<StudentGroup>();
+            Groups = new List<Group>();
         }
         
     }
