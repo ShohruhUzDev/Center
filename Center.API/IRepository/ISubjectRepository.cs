@@ -9,10 +9,10 @@ namespace Center.API.Data
    public  interface ISubjectRepository
     {
         Task<IEnumerable<Subject>> GetAllSubjectsAsync();
-        Task<Subject> GetbyIdSubjectAsync(int id);
+        Task<Subject> GetbyIdSubjectAsync(Guid id);
         Task CreateSubjectAsync(Subject subject);
         Task UpdateSubjectAsync(Subject subject);
-        Task DeleteSubject(int id);
-        bool ExistSubject(int id);
+        Task DeleteSubject(Guid id);
+        bool ExistSubject(Guid id);
     }
 }

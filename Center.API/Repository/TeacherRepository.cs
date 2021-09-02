@@ -15,13 +15,13 @@ namespace Center.API.Data
         {
             _centerContext = centerContext;
         }
-        public async Task CreateTeacherAsync(Teacher teacher)
+        public async Task CreateTeacherAsync( Teacher teacher)
         {
            await _centerContext.Teachers.AddAsync(teacher);
            await _centerContext.SaveChangesAsync();
         }
 
-        public async Task DeleteTeacher(int id)
+        public async Task DeleteTeacher(Guid id)
         {
             if(ExistTeacher(id))
             {
@@ -31,7 +31,7 @@ namespace Center.API.Data
             }
         }
 
-        public bool ExistTeacher(int id)
+        public bool ExistTeacher(Guid id)
         {
             return _centerContext.Teachers.Any(i => i.Id == id);
         }
@@ -57,7 +57,7 @@ namespace Center.API.Data
             throw new NotImplementedException();
         }
 
-        public async Task<Teacher> GetbyIdTeacherAsync(int id)
+        public async Task<Teacher> GetbyIdTeacherAsync(Guid id)
         {
             return await _centerContext.Teachers.FirstOrDefaultAsync(i => i.Id == id);
         }

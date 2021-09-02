@@ -12,13 +12,13 @@ using Center.API.Dtos;
 
 namespace Center.API.Controllers
 {
-    [Route("api/[controller]/[action]")]
+    [Route("api/[controller]")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
         private readonly IStudentRepository _studentRepository;
-        private readonly IMapper _mapper;
 
+        public IMapper _mapper { get; }
         public StudentsController(IStudentRepository studentRepository, IMapper mapper)
         {
             _studentRepository = studentRepository;
@@ -29,111 +29,88 @@ namespace Center.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetStudents()
         {
-            var allstudents = await _studentRepository.GetAllStudentsAsync();
-            return Ok(_mapper.Map<IEnumerable<ReadStudentDto>>(allstudents));
+            var students = await _studentRepository.GetAllStudentsAsync();
+            return Ok(_mapper.Map<IEnumerable<StudentDto>>(students));
         }
-
-
 
         // GET: api/Students/5
         [HttpGet("{id}")]
-        public async Task<ActionResult<Student>> GetStudent(int id)
+        public async Task<ActionResult> GetStudent(Guid id)
         {
-            var studentreadmodel = new ReadStudentDto();
-            if (id < 0)
-            {
-                return BadRequest();
-            }
-            if (_studentRepository.ExistStudent(id))
-            {
-                var student1 = await _studentRepository.GetbyIdStudentAsync(id);
-                studentreadmodel = _mapper.Map<ReadStudentDto>(student1);
-            }
+            var student = await _studentRepository.GetbyIdStudentAsync(id);
 
-            else
+            if (student == null)
             {
                 return NotFound();
             }
 
-
-            return Ok(studentreadmodel);
-            
+            return Ok(_mapper.Map<StudentDto>(student));
         }
 
         // PUT: api/Students/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        [HttpPut("{id}")]
-        public async Task<IActionResult> PutStudent(int id, UpdateStudentDto student)
-        {
+        //[HttpPut("{id}")]
+        //public async Task<IActionResult> PutStudent(Guid id, Student student)
+        //{
+        //    if (id != student.Id)
+        //    {
+        //        return BadRequest();
+        //    }
 
-            if (!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
-            if (id != student.Id)
-            {
-                return BadRequest();
-            }
+        //    _context.Entry(student).State = EntityState.Modified;
 
-          
+        //    try
+        //    {
+        //        await _context.SaveChangesAsync();
+        //    }
+        //    catch (DbUpdateConcurrencyException)
+        //    {
+        //        if (!StudentExists(id))
+        //        {
+        //            return NotFound();
+        //        }
+        //        else
+        //        {
+        //            throw;
+        //        }
+        //    }
 
-            try
-            {
-               await _studentRepository.UpdateStudentAsync(_mapper.Map<Student>(student));
-               
-            }
-            catch (DbUpdateConcurrencyException)
-            {
-                if (!_studentRepository.ExistStudent(id))
-                {
-                    return NotFound();
-                }
-                else
-                {
-                    throw;
-                }
-            }
-
-            return NoContent();
-        }
+        //    return NoContent();
+        //}
 
         // POST: api/Students
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult> PostStudent([FromBody] CreateStudentDto student)
+        public async Task<ActionResult<Student>> PostStudent([FromBody] StudentForCreationDto student)
         {
-            if(!ModelState.IsValid)
-            {
-                return BadRequest(ModelState);
-            }
+            var studentdto = _mapper.Map < Student > (student);
 
+          await  _studentRepository.CreateStudentAsync(student.Ids, studentdto);
+           
+            
 
-            var createstudent = _mapper.Map<Student>(student);
-          await  _studentRepository.CreateStudentAsync(createstudent);
-
-            var readstudent = _mapper.Map<ReadStudentDto>(createstudent);
-            return CreatedAtAction("", readstudent);
+            return Created("", student);
         }
 
         // DELETE: api/Students/5
         [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteStudent(int id)
+        public async Task<IActionResult> DeleteStudent(Guid id)
         {
-            if(id<0)
-            {
-                return BadRequest();
-            }
-           
-            if (!_studentRepository.ExistStudent(id))
+            var student = await _studentRepository.GetbyIdStudentAsync(id);
+            if (student == null)
             {
                 return NotFound();
             }
-            await _studentRepository.DeleteStudent(id);
+
+           await _studentRepository.DeleteStudent(id);
+           
 
             return NoContent();
         }
 
-      
-
+        //private bool StudentExists(Guid id)
+        //{
+        //    return _context.Students.Any(e => e.Id == id);
+        //}
     }
 }

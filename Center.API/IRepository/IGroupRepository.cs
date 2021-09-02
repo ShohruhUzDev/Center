@@ -11,14 +11,14 @@ namespace Center.API.Data
   public   interface IGroupRepository
     {
         Task<IEnumerable<Group>> GetAllGroupsAsync();
-        Task<Group> GetbyIdGroupAsync(int id);
-        Task CreateGroupAsync(Group group);
+        Task<Group> GetbyIdGroupAsync(Guid id);
+        Task CreateGroupAsync(IList<Guid> ids,  Group group);
         Task UpdateGroupAsync(Group group);
-        Task DeleteGroup(int id);
-        bool ExistGroup(int id);
+        Task DeleteGroup(Guid id);
+        bool ExistGroup(Guid id);
     //    Task<IEnumerable<Student>> GetAllStudentsByGroupId(int groupId);
-        Task<IEnumerable< Group>> GetGroupsByTeacherId(int teacherId);
-        Task<IEnumerable< Group>> GetGroupsBySubjectId(int subjectId);
+        //Task<IEnumerable< Group>> GetGroupsByTeacherId(int teacherId);
+        //Task<IEnumerable< Group>> GetGroupsBySubjectId(int subjectId);
 
 
     }

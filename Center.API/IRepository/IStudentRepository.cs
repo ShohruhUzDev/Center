@@ -9,11 +9,11 @@ namespace Center.API.Data
    public interface IStudentRepository
     {
         Task<IEnumerable<Student>> GetAllStudentsAsync();
-        Task<Student> GetbyIdStudentAsync(int id);
-        Task CreateStudentAsync(Student group);
-        Task UpdateStudentAsync(Student group);
-        Task DeleteStudent(int id);
-        bool ExistStudent(int id);
+        Task<Student> GetbyIdStudentAsync(Guid id);
+        Task CreateStudentAsync(IList<Guid> ids, Student student);
+        Task UpdateStudentAsync(Student student);
+        Task DeleteStudent(Guid id);
+        bool ExistStudent(Guid id);
 
     }
 }

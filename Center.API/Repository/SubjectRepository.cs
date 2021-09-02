@@ -23,7 +23,7 @@ namespace Center.API.Data
               
         }
 
-        public async Task DeleteSubject(int id)
+        public async Task DeleteSubject(Guid id)
         {
             if(ExistSubject(id))
             {
@@ -35,7 +35,7 @@ namespace Center.API.Data
 
         }
 
-        public  bool ExistSubject(int id)
+        public  bool ExistSubject(Guid id)
         {
             return  _centerContext.Subjects.Any(i => i.Id == id);
         }
@@ -45,7 +45,7 @@ namespace Center.API.Data
             return await _centerContext.Subjects.ToListAsync();
         }
 
-        public async Task<Subject> GetbyIdSubjectAsync(int id)
+        public async Task<Subject> GetbyIdSubjectAsync(Guid id)
         {
           
             return await _centerContext.Subjects.FirstOrDefaultAsync(i => i.Id == id);

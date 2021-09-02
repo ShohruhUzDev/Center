@@ -9,7 +9,7 @@ namespace Center.API.Models
     {
         [Key]
         [Required]
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
 
@@ -25,7 +25,8 @@ namespace Center.API.Models
         public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        public  ICollection<Student> Students { get; set; }
+        public virtual ICollection<Student> Students { get; set; }
+      
 
         public Group()
         {

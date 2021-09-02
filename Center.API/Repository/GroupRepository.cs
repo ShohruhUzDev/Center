@@ -19,13 +19,22 @@ namespace Center.API.Data
 
        
 
-        public async Task CreateGroupAsync(Group group)
+        public async Task CreateGroupAsync(IList<Guid> ids, Group group)
         {
+            foreach(var id in ids)
+            {
+                var student = await _centercontext.Students.FirstOrDefaultAsync(stu => stu.Id == id);
+                if(student is not null)
+                {
+                    group.Students.Add(student);
+                }
+            }
+
             await  _centercontext.Groups.AddAsync(group);
             await _centercontext.SaveChangesAsync();
         }
 
-        public async Task DeleteGroup(int id)
+        public async Task DeleteGroup(Guid id)
         {
            
 
@@ -43,45 +52,34 @@ namespace Center.API.Data
 
         }
 
-        public  bool ExistGroup(int id)
+       
+
+        public  bool ExistGroup(Guid id)
         {
             return  _centercontext.Groups.Any(e => e.Id == id);
         }
 
-        public async Task<IEnumerable<Group>> GetAllGroupsAsync()
-        {
-            return await _centercontext.Groups.ToListAsync();
-        }
+       
 
+        public async Task<IEnumerable<Group>> GetAllGroupsAsync() => await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
+       
 
-        //ishlamayapdi hali
-        //public  async Task<IEnumerable<Student>> GetAllStudentsByGroupId(int groupId)
+      
+
+        public async Task<Group> GetbyIdGroupAsync(Guid id) =>await _centercontext.Groups.Include(stu=>stu.Students).FirstOrDefaultAsync(i => i.Id == id);
+       
+
+       
+
+        //public async Task<IEnumerable<Group>> GetGroupsBySubjectId(int subjectId)
         //{
-        //     var result1=await _centercontext.Groups.Include(u => u.Students).FirstOrDefaultAsync(i=>i.Id==groupId);
-           
-        //    return result1.Students;
+        //    return await _centercontext.Groups.Where(i => i.Subject.Id == subjectId).ToListAsync();
         //}
 
-        public async Task<Group> GetbyIdGroupAsync(int id)
-        {
-           
-           return await _centercontext.Groups.FirstOrDefaultAsync(i => i.Id == id);
-      
-        }
-
-
-
-     
-
-        public async Task<IEnumerable<Group>> GetGroupsBySubjectId(int subjectId)
-        {
-            return await _centercontext.Groups.Where(i => i.Subject.Id == subjectId).ToListAsync();
-        }
-
-        public async Task<IEnumerable<Group>> GetGroupsByTeacherId(int teacherId)
-        {
-            return await _centercontext.Groups.Where(i => i.Teacher.Id == teacherId).ToListAsync();
-        }
+        //public async Task<IEnumerable<Group>> GetGroupsByTeacherId(int teacherId)
+        //{
+        //    return await _centercontext.Groups.Where(i => i.Teacher.Id == teacherId).ToListAsync();
+        //}
 
         public async Task UpdateGroupAsync(Group group)
         {

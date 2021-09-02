@@ -12,7 +12,7 @@ namespace Center.API.Models
 
         [Key]
         [Required]
-        
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
        
@@ -30,7 +30,7 @@ namespace Center.API.Models
         [Required(ErrorMessage = "Phone is Required")]
         [MaxLength(20, ErrorMessage = "Phone length very long")]
         public string  Phone { get; set; }
-        public  ICollection<Group> Groups { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
         public Student()
         {
             Groups = new List<Group>();

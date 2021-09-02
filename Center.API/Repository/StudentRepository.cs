@@ -15,13 +15,22 @@ namespace Center.API.Data
         {
             _studentContext = studentContext;
         }
-        public async Task CreateStudentAsync(Student group)
+        public async Task CreateStudentAsync(IList<Guid> ids, Student student)
         {
-            await _studentContext.Students.AddAsync(group);
+            foreach(var id in ids)
+            {
+                var grp = await _studentContext.Groups.FirstOrDefaultAsync(i => i.Id == id);
+
+                if(grp is not null)
+                {
+                    student.Groups.Add(grp);
+                }
+            }
+            await _studentContext.Students.AddAsync(student);
             await _studentContext.SaveChangesAsync();
         }
 
-        public async Task DeleteStudent(int id)
+        public async Task DeleteStudent(Guid id)
         {
             if (ExistStudent(id))
             {
@@ -36,24 +45,24 @@ namespace Center.API.Data
             }
         }
 
-        public bool ExistStudent(int id)
+        public bool ExistStudent(Guid id)
         {
             return _studentContext.Students.Any(e => e.Id == id);
         }
 
         public async Task<IEnumerable<Student>> GetAllStudentsAsync()
         {
-           return await _studentContext.Students.ToListAsync();
+           return await _studentContext.Students.Include(grp=>grp.Groups).ToListAsync();
         }
 
-        public async Task<Student> GetbyIdStudentAsync(int id)
+        public async Task<Student> GetbyIdStudentAsync(Guid id)
         {
-           return await _studentContext.Students.FirstOrDefaultAsync(i => i.Id == id);
+           return await _studentContext.Students.Include(grp=>grp.Groups). FirstOrDefaultAsync(i => i.Id == id);
         }
 
-        public async Task UpdateStudentAsync(Student group1)
+        public async Task UpdateStudentAsync(Student student)
         {
-            _studentContext.Entry(group1).State = EntityState.Modified;
+            _studentContext.Entry(student).State = EntityState.Modified;
             await _studentContext.SaveChangesAsync();
         }
     }

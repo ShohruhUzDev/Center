@@ -9,7 +9,7 @@ namespace Center.API.Models
     {
         [Key]
         [Required]
-      
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
 
@@ -24,7 +24,7 @@ namespace Center.API.Models
         public int Price { get; set; }
 
 
-        public List<Group> Groups { get; set; }
+        public virtual ICollection<Group> Groups { get; set; }
         public Subject()
         {
             Groups = new List<Group>();
