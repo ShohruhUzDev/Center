@@ -1,0 +1,25 @@
+﻿using Center.API.Dtos;
+using Center.API.Models;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+using System.Threading.Tasks;
+
+namespace Center.API.Data
+{
+  public   interface IGroupRepository
+    {
+        Task<IEnumerable<Group>> GetAllGroupsAsync();
+        Task<Group> GetbyIdGroupAsync(int id);
+        Task CreateGroupAsync(Group group);
+        Task UpdateGroupAsync(Group group);
+        Task DeleteGroup(int id);
+        bool ExistGroup(int id);
+    //    Task<IEnumerable<Student>> GetAllStudentsByGroupId(int groupId);
+        Task<IEnumerable< Group>> GetGroupsByTeacherId(int teacherId);
+        Task<IEnumerable< Group>> GetGroupsBySubjectId(int subjectId);
+
+
+    }
+}
