@@ -12,8 +12,8 @@ namespace Center.API.Models
 
         [Key]
         [Required]
-        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
-        public int Id { get; set; }
+        
+        public Guid Id { get; set; }
 
        
         [Required(ErrorMessage ="FirstName is Required")]
