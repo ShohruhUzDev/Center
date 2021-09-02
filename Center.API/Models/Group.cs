@@ -24,11 +24,11 @@ namespace Center.API.Models
         public int SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        public virtual ICollection<StudentGroup> StudentGroups { get; set; }
+        public  ICollection<Student> Students { get; set; }
 
         public Group()
         {
-            StudentGroups = new List<StudentGroup>();
+            Students = new List<Student>();
         }
 
     }
