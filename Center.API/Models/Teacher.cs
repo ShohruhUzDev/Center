@@ -33,5 +33,9 @@ namespace Center.API.Models
 
 
         public List<Group> Groups  { get; set; }
+        public Teacher()
+        {
+            Groups = new List<Group>();
+        }
     }
 }

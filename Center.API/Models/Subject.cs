@@ -25,5 +25,9 @@ namespace Center.API.Models
 
 
         public List<Group> Groups { get; set; }
+        public Subject()
+        {
+            Groups = new List<Group>();
+        }
     }
 }
