@@ -14,7 +14,8 @@
 
 
                 <!--Create Teacher Button-->
-                <Button x:Name="CreateTeacher_btn" 
+                <Button x:Name="CreateStuden_btn"
+                        Click="CreateStuden_btn_Click"
                         BorderThickness="0.1"
                         Height="48" Margin="15 5 30 1"
                         Background="Transparent" 

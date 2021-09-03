@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.Desktop.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Center.Desktop.UserControls
         public Subjects()
         {
             InitializeComponent();
+        }
+
+        private void CreateSubject_btn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateSubjectView createSubjectView = new CreateSubjectView();
+            createSubjectView.ShowDialog();
         }
     }
 }

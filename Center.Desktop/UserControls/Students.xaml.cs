@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.Desktop.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Center.Desktop.UserControls
         public Students()
         {
             InitializeComponent();
+        }
+
+        private void CreateStuden_btn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateStudentView createStudentView = new CreateStudentView();
+            createStudentView.ShowDialog();
         }
     }
 }
