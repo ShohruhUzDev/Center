@@ -86,13 +86,13 @@
                 <Grid Grid.Row="1" Height="545" VerticalAlignment="Top" Margin="7,10,-7,0">
                     <StackPanel Margin="0 10 0 0 ">
 
-                        <Button x:Name="Registration_btn"   Height="40" Margin="15 10 15 10" md:ShadowAssist.ShadowDepth="Depth4" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
+                        <Button x:Name="Guruhlar_btn"  Click="Guruhlar_btn_Click" Height="40" Margin="15 10 15 10" md:ShadowAssist.ShadowDepth="Depth4" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal">
                                 <md:PackIcon HorizontalAlignment="Left" Kind="Table" Foreground="Black"  Height="35" Width="35"/>
                                 <TextBlock  Text="Guruhlar" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" Margin="15 0 35 0"/>
                             </StackPanel>
                         </Button>
-                        <Button x:Name="Rooms"  Height="40" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1" Width="220">
+                        <Button x:Name="Oqituvchilar_btn" Click="Oqituvchilar_btn_Click"  Height="40" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1" Width="220">
                             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Width="175" Height="35">
 
                                 <md:PackIcon  HorizontalAlignment="Left" Kind="Teacher" Foreground="Black" Height="35" Width="35"/>
@@ -101,16 +101,23 @@
                         </Button>
 
 
-                        <Button x:Name="Emoloyee_btn"   Height="40"  Margin="15 10 15 10" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
+                        <Button x:Name="Oquvchilar_btn"  Click="Oquvchilar_btn_Click"  Height="40"  Margin="15 10 15 10" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal" Width="179" >
-                                <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="LearnOutline" Foreground="Black"  Height="35" Width="35"/>
+                                <md:PackIcon  Margin="1 1 10 0 " Kind="LearnOutline" Foreground="Black"  Height="35" Width="35"/>
                                 <TextBlock  Text="O'quvchilar" Margin="1 0 55 0" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" />
                             </StackPanel>
                         </Button>
-                        
-                        
-                        
-                        
+
+                        <Button x:Name="Fanlar_btn" Click="Fanlar_btn_Click"   Height="40"  Margin="15 0 15 10" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
+                            <StackPanel Orientation="Horizontal" Width="179" >
+                                <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="Book" Foreground="Black"  Height="35" Width="35"/>
+                                <TextBlock  Text="Fanlar" Margin="1 0 55 0" VerticalAlignment="Bottom" Foreground=" Black" Opacity="0.7" FontSize="22" />
+                            </StackPanel>
+                        </Button>
+
+
+
+
                         <!--<Button x:Name="Admin_btn" VerticalAlignment="Bottom" Margin="10 250" Height="40" Background="Transparent" md:ButtonAssist.CornerRadius="10" BorderThickness="0.1">
                             <StackPanel Orientation="Horizontal" Width="179" >
                                 <md:PackIcon  Margin="1 1 10 0 "  HorizontalAlignment="Left" Kind="Hotel" Foreground="Black"  Height="35" Width="35"/>
