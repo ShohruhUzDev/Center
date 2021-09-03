@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
 using Center.API.Dtos;
-using Center.API.Dtos.SubjectDtos;
-using Center.API.Dtos.TeacherDtos;
+using Center.API.Dtos;
+
 using Center.API.Models;
 using System;
 using System.Collections.Generic;
@@ -27,12 +27,13 @@ namespace Center.API.Profiles
 
             CreateMap<Teacher, TeacherDto>().ReverseMap();
             CreateMap<Teacher, TeacherForCreationDto>().ReverseMap();
+            CreateMap<Teacher, CustomTeacherDto>().ReverseMap();
 
 
-           
 
 
-          
+
+
 
         }
     }
