@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.Desktop.Pages;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,6 +23,13 @@ namespace Center.Desktop
         public Login()
         {
             InitializeComponent();
+        }
+
+        private void Kirish_btn_Click(object sender, RoutedEventArgs e)
+        {
+            MainPage mainPage = new MainPage();
+            mainPage.Show();
+            this.Hide();
         }
     }
 }

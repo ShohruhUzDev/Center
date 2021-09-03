@@ -50,7 +50,7 @@
 
                 </Border>
 
-                <Button x:Name="Kirish_btn" FontSize="30"  md:ButtonAssist.CornerRadius="10" Margin="45 40 45 0" Height="45" Background="#0156CB" Content="OK">
+                <Button x:Name="Kirish_btn" Click="Kirish_btn_Click" FontSize="30"  md:ButtonAssist.CornerRadius="10" Margin="45 40 45 0" Height="45" Background="#0156CB" Content="OK">
                 </Button>
             </StackPanel>
         </Border>

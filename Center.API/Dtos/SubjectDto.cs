@@ -27,7 +27,7 @@ namespace Center.API.Dtos
     }
     public class SubjectForCreationDto:CustomSubjectDto
     {
-        public IList<Guid> Ids { get; set; }
+      
     }
 
 }

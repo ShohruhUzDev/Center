@@ -32,6 +32,6 @@ namespace Center.API.Dtos
     }
     public class TeacherForCreationDto:CustomTeacherDto
     {
-        public IList<Guid> Ids { get; set; }
+     //  public IList<Guid> Ids { get; set; }
     }
 }

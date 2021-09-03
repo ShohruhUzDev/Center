@@ -89,11 +89,11 @@ namespace Center.API.Controllers
         [HttpPost]
         public async Task<ActionResult> PostTeacher([FromBody] TeacherForCreationDto teacher)
         {
-            //if(ModelState.IsValid)
-            //{
-            //    return BadRequest();
-            //}
-         await   _teacherRepository.CreateTeacherAsync(_mapper.Map<Teacher>(teacher));
+            if (ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            await   _teacherRepository.CreateTeacherAsync(_mapper.Map<Teacher>(teacher));
             
             return Created("", teacher);
         }
