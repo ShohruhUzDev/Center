@@ -14,7 +14,8 @@
                 
                 
                 <!--Create Teacher Button-->
-                <Button x:Name="CreateTeacher_btn" 
+                <Button x:Name="Guruhlar_btn" 
+                        Click="Guruhlar_btn_Click"
                         BorderThickness="0.1"
                         Height="48" Margin="15 5 30 1"
                         Background="Transparent" 
@@ -30,6 +31,7 @@
                             Kind="Table" Height="45"
                             Width="45"/>
                         <Border
+                            
                             CornerRadius="10"
                             Height="64"
                             BorderThickness="0.1" 

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.Desktop.View;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -23,6 +24,12 @@ namespace Center.Desktop.Pages.UserControls
         public Guruhlar()
         {
             InitializeComponent();
+        }
+
+        private void Guruhlar_btn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateGroupView createGroupView = new CreateGroupView();
+            createGroupView.ShowDialog();
         }
     }
 }
