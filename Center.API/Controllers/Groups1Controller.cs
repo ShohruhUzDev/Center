@@ -51,34 +51,35 @@ namespace Center.API.Controllers
 
         // PUT: api/Groups1/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutGroup(Guid id, Group @group)
-        //{
-        //    if (id != @group.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutGroup(Guid id, [FromBody] UpdateGroupDto group1)
+        {
+            if (id != group1.Id)
+            {
+                return BadRequest();
+            }
 
-        //    _context.Entry(@group).State = EntityState.Modified;
+           
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!GroupExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                await _groupRepository.UpdateGroupAsync(_mapper.Map<Group>( group1));
+               
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_groupRepository.ExistGroup(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return NoContent();
-        //}
+            return NoContent();
+        }
 
         // POST: api/Groups1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
