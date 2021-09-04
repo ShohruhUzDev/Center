@@ -8,6 +8,8 @@ namespace Center.API.Dtos
 {
     public class CustomTeacherDto
     {
+        public Guid Id { get; set; }
+
         [Required(ErrorMessage = "FirstName is Required")]
         [MaxLength(20, ErrorMessage = "FirstName length very long")]
         public string FirstName { get; set; }
@@ -30,8 +32,22 @@ namespace Center.API.Dtos
         public ICollection<GroupDto> Guruhlar { get; set; }
 
     }
-    public class TeacherForCreationDto:CustomTeacherDto
+    public class TeacherForCreationDto
     {
-     //  public IList<Guid> Ids { get; set; }
+        //  public IList<Guid> Ids { get; set; }
+        [Required(ErrorMessage = "FirstName is Required")]
+        [MaxLength(20, ErrorMessage = "FirstName length very long")]
+        public string FirstName { get; set; }
+
+
+
+        [Required(ErrorMessage = "LastName is Required")]
+        [MaxLength(20, ErrorMessage = "LastName length very long")]
+        public string LastName { get; set; }
+
+
+        [Required(ErrorMessage = "Phone is Required")]
+        [MaxLength(20, ErrorMessage = "Phone length very long")]
+        public string Phone { get; set; }
     }
 }
