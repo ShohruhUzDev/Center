@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Center.API.Dtos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,14 +11,29 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
 {
     public class TeacherRepository : ITeacherRepository
     {
-        public Task<bool> CreateTeacherAsync(Teacher teacher)
+        public async Task<bool> CreateTeacherAsync(TeacherForCreationDto teacher)
         {
-            throw new NotImplementedException();
-        }
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(TeacherAPI.Post_URL);
 
-        public Task<bool> DeleteTeacher(Guid id)
+
+            string  json = JsonConvert.SerializeObject(teacher);
+            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var res = await client.PostAsync(client.BaseAddress, stringContent);
+            string responce =await res.Content.ReadAsStringAsync();
+            return responce == "true";
+
+
+
+        }
+        public async Task<bool> DeleteTeacher(Guid id)
         {
-            throw new NotImplementedException();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(TeacherAPI.Delete_URL);
+            var res = await client.DeleteAsync(client.BaseAddress + $"/{id}");
+            string responce = await res.Content.ReadAsStringAsync();
+            return responce == "true";
         }
 
         public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
@@ -30,14 +46,27 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
             return teachers;
         }
 
-        public Task<Teacher> GetbyIdTeacherAsync(Guid id)
+        public async Task<Teacher> GetbyIdTeacherAsync(Guid id)
         {
-            throw new NotImplementedException();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(TeacherAPI.Get_URL);
+            var res =await client.GetAsync(client.BaseAddress + $"/{id}");
+            string response = await res.Content.ReadAsStringAsync();
+            Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
+            return teacher;
         }
 
-        public Task<bool> UpdateTeacherAsync(Teacher teacher)
+        public async Task<bool> UpdateTeacherAsync(Guid id, Teacher teacher)
         {
-            throw new NotImplementedException();
+            HttpClient client = new HttpClient();
+            client.BaseAddress = new Uri(TeacherAPI.Put_URL+$"/{id}");
+         
+            var json=  JsonConvert.SerializeObject(teacher);
+            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+            var res = await client.PutAsync(client.BaseAddress, stringContent);
+            string responce = await res.Content.ReadAsStringAsync();
+            return responce == "true";
         }
     }
 }
