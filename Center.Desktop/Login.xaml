@@ -27,7 +27,7 @@
 
                 <Border CornerRadius="10 "  Background="#2A4671" Margin="45 45 45 0">
                     <StackPanel Orientation="Horizontal" >
-                        <TextBox  md:HintAssist.Hint="Login" Width="350"  Background="#2A4671" Foreground="Snow" VerticalContentAlignment="Center" Padding="3" FontSize="18" BorderThickness="0" md:ShadowAssist.ShadowDepth="Depth4">
+                        <TextBox x:Name="Login_txt"  md:HintAssist.Hint="Login" Width="350"  Background="#2A4671" Foreground="Snow" VerticalContentAlignment="Center" Padding="3" FontSize="18" BorderThickness="0" md:ShadowAssist.ShadowDepth="Depth4">
 
                         </TextBox>
                         <md:PackIcon HorizontalAlignment="Right" Kind="User" Height="35" Width="35" Foreground="Snow"  Margin=" 0 10 0 0 "/>
