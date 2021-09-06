@@ -1,4 +1,8 @@
-﻿using System;
+﻿
+using Center.API.Dtos;
+using Center.Desktop.ServiceLayer.TeacherServie;
+using Center.Desktop.ServiceLayer.TeacherServie.Concrete;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -19,9 +23,34 @@ namespace Center.Desktop.View
     /// </summary>
     public partial class CreateTeacherView : Window
     {
+        ITeacherRepository teacherRepository = new TeacherRepository();
         public CreateTeacherView()
         {
             InitializeComponent();
+        }
+
+        private async void Save_btn_Click(object sender, RoutedEventArgs e)
+        {
+            TeacherForCreationDto teacherForCreationDto = new TeacherForCreationDto()
+            {
+                FirstName = FirstName_txt.Text,
+            LastName = LastName_txt.Text,
+            Phone = Phone_txt.Text
+
+             };
+    
+
+
+        bool res=await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
+
+            if(res==true)
+            {
+                MessageBox.Show("Yangi uqituvchi yaratildi");
+            }
+            else
+            {
+                MessageBox.Show("Xatolik yuz berdi");
+            }
         }
     }
 }
