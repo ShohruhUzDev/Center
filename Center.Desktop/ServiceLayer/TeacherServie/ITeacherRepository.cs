@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.API.Dtos;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,8 +11,8 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
     {
         Task<IEnumerable<Teacher>> GetAllTeachersAsync();
         Task<Teacher> GetbyIdTeacherAsync(Guid id);
-        Task<bool> CreateTeacherAsync(Teacher teacher);
-        Task<bool> UpdateTeacherAsync(Teacher teacher);
+        Task<bool> CreateTeacherAsync(TeacherForCreationDto teacher);
+        Task<bool> UpdateTeacherAsync(Guid id, Teacher teacher);
         Task<bool> DeleteTeacher(Guid id);
        // bool ExistTeacher(Guid id);
     }
