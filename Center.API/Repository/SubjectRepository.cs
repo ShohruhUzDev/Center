@@ -42,7 +42,7 @@ namespace Center.API.Data
 
         public async Task<IEnumerable<Subject>> GetAllSubjectsAsync()
         {
-            return await _centerContext.Subjects.ToListAsync();
+            return await _centerContext.Subjects.Include(i=>i.Groups).ToListAsync();
         }
 
         public async Task<Subject> GetbyIdSubjectAsync(Guid id)
