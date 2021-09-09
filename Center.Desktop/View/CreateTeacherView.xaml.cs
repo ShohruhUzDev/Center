@@ -34,16 +34,16 @@ namespace Center.Desktop.View
             TeacherForCreationDto teacherForCreationDto = new TeacherForCreationDto()
             {
                 FirstName = FirstName_txt.Text,
-            LastName = LastName_txt.Text,
-            Phone = Phone_txt.Text
+                LastName = LastName_txt.Text,
+                Phone = Phone_txt.Text
 
              };
     
 
 
-        bool res=await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
+             string  res=await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
 
-            if(res==true)
+            if(res is not null)
             {
                 MessageBox.Show("Yangi uqituvchi yaratildi");
             }
