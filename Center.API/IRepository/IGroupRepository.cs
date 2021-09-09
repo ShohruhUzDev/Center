@@ -10,12 +10,13 @@ namespace Center.API.Data
 {
   public   interface IGroupRepository
     {
-        Task<IEnumerable<Group>> GetAllGroupsAsync();
-        Task<Group> GetbyIdGroupAsync(Guid id);
-        Task CreateGroupAsync(IList<Guid> ids,  Group group);
+        Task<IEnumerable<GroupDto>> GetAllGroupsAsync();
+        Task<GroupDto> GetbyIdGroupAsync(Guid id);
+        Task CreateGroupAsync(  Group group);
         Task UpdateGroupAsync(Group group);
         Task DeleteGroup(Guid id);
         bool ExistGroup(Guid id);
+        Task AddStudentsToGroup(IList<Guid> studentsid, Guid groupid);
     //    Task<IEnumerable<Student>> GetAllStudentsByGroupId(int groupId);
         //Task<IEnumerable< Group>> GetGroupsByTeacherId(int teacherId);
         //Task<IEnumerable< Group>> GetGroupsBySubjectId(int subjectId);
