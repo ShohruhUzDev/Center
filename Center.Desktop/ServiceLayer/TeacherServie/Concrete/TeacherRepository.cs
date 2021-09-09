@@ -3,6 +3,7 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
@@ -11,52 +12,77 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
 {
     public class TeacherRepository : ITeacherRepository
     {
-        public async Task<bool> CreateTeacherAsync(TeacherForCreationDto teacher)
+        public async Task<string> CreateTeacherAsync(TeacherForCreationDto teacher)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(TeacherAPI.Post_URL);
+            using(var client=new HttpClient() )
+            {
+                client.BaseAddress = new Uri(TeacherAPI.Post_URL);
 
 
-            string  json = JsonConvert.SerializeObject(teacher);
-            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                string json = JsonConvert.SerializeObject(teacher);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var res = await client.PostAsync(client.BaseAddress, stringContent);
-            string responce =await res.Content.ReadAsStringAsync();
-            return responce == "true";
+                var res = await client.PostAsync(client.BaseAddress, stringContent);
 
+                if (res.StatusCode == HttpStatusCode.Created)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+
+
+                else
+                    return null;
+
+            }
 
 
         }
-        public async Task<bool> DeleteTeacher(Guid id)
+        public async Task<string> DeleteTeacher(Guid id)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(TeacherAPI.Delete_URL);
-            var res = await client.DeleteAsync(client.BaseAddress + $"/{id}");
-            string responce = await res.Content.ReadAsStringAsync();
-            return responce == "true";
+            using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(TeacherAPI.Delete_URL);
+                var res = await client.DeleteAsync(client.BaseAddress + $"/{id}");
+                if(res.StatusCode==HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+               
+            }
         }
+           
+           
 
         public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(TeacherAPI.GetAll_URL);
-            var res =await client.GetAsync(client.BaseAddress);
-            string response = await res.Content.ReadAsStringAsync();
-           IEnumerable<Teacher> teachers = JsonConvert.DeserializeObject<IEnumerable<Teacher>>(response);
-            return teachers;
+            using (var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(TeacherAPI.GetAll_URL);
+                var res = await client.GetAsync(client.BaseAddress);
+                string response = await res.Content.ReadAsStringAsync();
+                IEnumerable<Teacher> teachers = JsonConvert.DeserializeObject<IEnumerable<Teacher>>(response);
+                return teachers;
+            }
+          
+           
         }
 
         public async Task<Teacher> GetbyIdTeacherAsync(Guid id)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(TeacherAPI.Get_URL);
-            var res =await client.GetAsync(client.BaseAddress + $"/{id}");
-            string response = await res.Content.ReadAsStringAsync();
-            Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
-            return teacher;
+            using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(TeacherAPI.Get_URL);
+                var res = await client.GetAsync(client.BaseAddress + $"/{id}");
+                string response = await res.Content.ReadAsStringAsync();
+                Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
+                return teacher;
+            }
+            
+          
         }
 
-        public async Task<bool> UpdateTeacherAsync(Guid id, Teacher teacher)
+        public async Task<string> UpdateTeacherAsync(Guid id, Teacher teacher)
         {
             HttpClient client = new HttpClient();
             client.BaseAddress = new Uri(TeacherAPI.Put_URL+$"/{id}");
@@ -65,8 +91,11 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
             StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
             var res = await client.PutAsync(client.BaseAddress, stringContent);
-            string responce = await res.Content.ReadAsStringAsync();
-            return responce == "true";
+            if(res.StatusCode==HttpStatusCode.OK)
+            {
+                return await res.Content.ReadAsStringAsync();
+            }
+            return null;
         }
     }
 }
