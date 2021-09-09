@@ -33,7 +33,7 @@ namespace Center.API.Dtos
 
 
         public Guid SubjectId { get; set; }
-        public ICollection<UpdateStudentDto> Studentlar { get; set; }
+        public ICollection<UpdateStudentDto> Students { get; set; }
     
     }
     public class GroupFroCreationDto: CustomGroupDto
