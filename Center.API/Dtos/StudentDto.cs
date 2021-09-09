@@ -26,7 +26,7 @@ namespace Center.API.Dtos
     public class StudentDto:CustomStudentDto
     {
         public Guid Id { get; set; }
-        public ICollection<UpdateGroupDto > Guruhlar { get; set; }
+        public ICollection<UpdateGroupDto > Groups { get; set; }
     }
     public class StudentForCreationDto:CustomStudentDto
     {
