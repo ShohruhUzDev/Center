@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.API.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -19,10 +20,20 @@ namespace Center.API.Dtos
         public Guid SubjectId { get; set; }
 
     }
-    public class GroupDto: CustomGroupDto
+    public class GroupDto
     { 
-    public Guid Id { get; set; }
-     public ICollection<StudentDto> Studentlar { get; set; }
+        public Guid Id { get; set; }
+
+        [Required(ErrorMessage = "GroupName is Required")]
+        [MaxLength(20, ErrorMessage = "GroupName length is very long")]
+        public string GroupName { get; set; }
+
+
+        public Guid TeacherId { get; set; }
+
+
+        public Guid SubjectId { get; set; }
+        public ICollection<UpdateStudentDto> Studentlar { get; set; }
     
     }
     public class GroupFroCreationDto: CustomGroupDto
@@ -43,5 +54,10 @@ namespace Center.API.Dtos
 
         public Guid SubjectId { get; set; }
 
+    }
+    public class GroupForAddStudents    {
+
+        public Guid GroupId { get; set; }
+        public IList<Guid> StudentIds { get; set; }
     }
 }

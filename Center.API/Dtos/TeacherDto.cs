@@ -28,7 +28,7 @@ namespace Center.API.Dtos
     }
     public class TeacherDto:CustomTeacherDto
     {
-        public Guid Id { get; set; }
+       
         public ICollection<GroupDto> Guruhlar { get; set; }
 
     }
