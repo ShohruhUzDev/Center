@@ -22,26 +22,31 @@ namespace Center.Desktop
     /// </summary>
     public partial class Login : Window
     {
+        ITeacherRepository teacherRepository = new TeacherRepository();
         public Login()
         {
             InitializeComponent();
         }
 
-        private void Kirish_btn_Click(object sender, RoutedEventArgs e)
+        private async void Kirish_btn_Click(object sender, RoutedEventArgs e)
         {
-            //Guid login;
-            //Guid.TryParse( Login_txt.Text, out login);
+            Guid login;
+            Guid.TryParse(Login_txt.Text, out login);
 
-            //var teachaer = await teacherRepository.GetbyIdTeacherAsync(login);
+            string teachaer = await teacherRepository.DeleteTeacher(login);
+            if(teachaer is not null)
+            MessageBox.Show("uchhirildi");
+            else
+                MessageBox.Show("uchirishda xatolik");
 
 
-            //MessageBox.Show(teachaer.FirstName+   "\n" +teachaer.LastName+ "\n" + teachaer.Id + "\n" + teachaer.Phone );
+            // MessageBox.Show(teachaer.FirstName + "\n" + teachaer.LastName + "\n" + teachaer.Id + "\n" + teachaer.Phone);
 
-            MainPage mainPage = new MainPage();
-            mainPage.Show();
-            this.Hide();
+            // MainPage mainPage = new MainPage();
+            //mainPage.Show();
+            //this.Hide();
         }
-        ITeacherRepository teacherRepository = new TeacherRepository();
+
         private  void Window_Loaded(object sender, RoutedEventArgs e)
         {
            
