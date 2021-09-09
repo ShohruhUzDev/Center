@@ -97,7 +97,7 @@ namespace Center.API.Controllers
         // POST: api/Groups1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Group>> PostGroup([FromBody]  GroupFroCreationDto group1)
+        public async Task<ActionResult<Group>> PostGroup([FromBody]  CustomGroupDto group1)
         {
          if(!ModelState.IsValid)
             {
@@ -114,11 +114,14 @@ namespace Center.API.Controllers
             return Created("", group1);
         }
 
-        [HttpPost]
+        [HttpPut]
         public async Task<ActionResult> AddStudentsToGroup([FromBody] GroupForAddStudents group1)
         {
-
-           // var grp = _mapper.Map<Group>(group1);
+            if (!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+            // var grp = _mapper.Map<Group>(group1);
 
             await _groupRepository.AddStudentsToGroup(group1.StudentIds, group1.GroupId);
 
@@ -127,7 +130,7 @@ namespace Center.API.Controllers
 
 
 
-            return Created("", group1);
+            return Created("", newgrp);
         }
 
         // DELETE: api/Groups1/5
