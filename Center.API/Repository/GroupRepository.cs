@@ -17,20 +17,30 @@ namespace Center.API.Data
             _centercontext = centerContext;
         }
 
-       
-
-        public async Task CreateGroupAsync(IList<Guid> ids, Group group)
+        public async Task AddStudentsToGroup(IList<Guid> studentsid, Guid groupid)
         {
-            foreach(var id in ids)
+            Group grp = new Group();
+            if (ExistGroup(groupid))
+            {
+              grp = await _centercontext.Groups.FirstOrDefaultAsync(jj=>jj.Id== groupid);
+          
+            }
+           
+            foreach (var id in studentsid)
             {
                 var student = await _centercontext.Students.FirstOrDefaultAsync(stu => stu.Id == id);
-                if(student is not null)
+                if (student is not null)
                 {
-                    group.Students.Add(student);
-                }
+                    grp.Students.Add(student);                }
             }
+            await _centercontext.SaveChangesAsync();
+        }
 
-            await  _centercontext.Groups.AddAsync(group);
+      
+
+        public async Task CreateGroupAsync(Group group)
+        {
+            await _centercontext.Groups.AddAsync(group);
             await _centercontext.SaveChangesAsync();
         }
 
@@ -61,12 +71,12 @@ namespace Center.API.Data
 
        
 
-        public async Task<IEnumerable<Group>> GetAllGroupsAsync() => await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
+        public async Task<IEnumerable<GroupDto>> GetAllGroupsAsync() =>(IEnumerable<GroupDto>) await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
        
 
       
 
-        public async Task<Group> GetbyIdGroupAsync(Guid id) =>await _centercontext.Groups.Include(stu=>stu.Students).FirstOrDefaultAsync(i => i.Id == id);
+        public async Task<GroupDto> GetbyIdGroupAsync(Guid id) => (GroupDto) await _centercontext.Groups.Include(stu=>stu.Students).FirstOrDefaultAsync(i => i.Id == id);
        
 
        
