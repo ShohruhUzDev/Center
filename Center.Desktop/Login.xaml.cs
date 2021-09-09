@@ -1,4 +1,6 @@
 ﻿using Center.Desktop.Pages;
+using Center.Desktop.ServiceLayer.TeacherServie;
+using Center.Desktop.ServiceLayer.TeacherServie.Concrete;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,9 +29,22 @@ namespace Center.Desktop
 
         private void Kirish_btn_Click(object sender, RoutedEventArgs e)
         {
+            //Guid login;
+            //Guid.TryParse( Login_txt.Text, out login);
+
+            //var teachaer = await teacherRepository.GetbyIdTeacherAsync(login);
+
+
+            //MessageBox.Show(teachaer.FirstName+   "\n" +teachaer.LastName+ "\n" + teachaer.Id + "\n" + teachaer.Phone );
+
             MainPage mainPage = new MainPage();
             mainPage.Show();
             this.Hide();
+        }
+        ITeacherRepository teacherRepository = new TeacherRepository();
+        private  void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+           
         }
     }
 }

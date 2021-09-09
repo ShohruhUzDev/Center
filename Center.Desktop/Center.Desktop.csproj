@@ -13,10 +13,15 @@
 
   <ItemGroup>
     <PackageReference Include="MaterialDesignThemes" Version="4.1.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
   </ItemGroup>
 
   <ItemGroup>
     <Folder Include="ViewModels\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Center.API\Center.API.csproj" />
   </ItemGroup>
 
   <ItemGroup>

@@ -31,8 +31,21 @@ namespace Center.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetGroups()
         {
-           var group= await _groupRepository.GetAllGroupsAsync();
+            var studentlist = new List< UpdateStudentDto>();
+            var group= await _groupRepository.GetAllGroupsAsync();
+            //foreach (var grp in group)
+            //{
+            //    foreach(var j in grp.Studentlar)
+            //    {
+            //        studentlist.Add(_mapper.Map<UpdateStudentDto>(j));
+            //        grp.Studentlar.Remove(j);
+                    
+            //    }
+            //    grp.Studentlar = studentlist;
+            //}
+            
             return Ok(_mapper.Map<IEnumerable<GroupDto>>(group));
+            //return Ok(group);
         }
 
         // GET: api/Groups1/5
@@ -86,13 +99,33 @@ namespace Center.API.Controllers
         [HttpPost]
         public async Task<ActionResult<Group>> PostGroup([FromBody]  GroupFroCreationDto group1)
         {
+         if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+         
             var grp = _mapper.Map<Group>(group1);
 
-            await _groupRepository.CreateGroupAsync(group1.Ids, grp);
+            await _groupRepository.CreateGroupAsync(grp);
 
-          
+         
 
-          
+
+            return Created("", group1);
+        }
+
+        [HttpPost]
+        public async Task<ActionResult> AddStudentsToGroup([FromBody] GroupForAddStudents group1)
+        {
+
+           // var grp = _mapper.Map<Group>(group1);
+
+            await _groupRepository.AddStudentsToGroup(group1.StudentIds, group1.GroupId);
+
+            GroupDto newgrp = await _groupRepository.GetbyIdGroupAsync(group1.GroupId);
+
+
+
 
             return Created("", group1);
         }

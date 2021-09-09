@@ -62,7 +62,7 @@ namespace Center.API.Controllers
 
             try
             {
-                await _subjectRepository.UpdateSubjectAsync(_mapper.Map<Subject>(subject);
+                await _subjectRepository.UpdateSubjectAsync(_mapper.Map<Subject>(subject));
                 
             }
             catch (DbUpdateConcurrencyException)
