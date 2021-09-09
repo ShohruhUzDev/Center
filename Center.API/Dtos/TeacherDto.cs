@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Center.API.Models;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -29,7 +30,7 @@ namespace Center.API.Dtos
     public class TeacherDto:CustomTeacherDto
     {
        
-        public ICollection<GroupDto> Guruhlar { get; set; }
+        public ICollection<UpdateGroupDto> Groups { get; set; }
 
     }
     public class TeacherForCreationDto
