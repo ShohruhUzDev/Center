@@ -23,7 +23,7 @@ namespace Center.API.Dtos
     public class SubjectDto : CustomSubjectDto
     {
        
-        public ICollection<GroupDto> Guruhlar { get; set; }
+        public ICollection<UpdateGroupDto> Groups { get; set; }
       
     }
     public class SubjectForCreationDto
