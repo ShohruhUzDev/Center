@@ -96,7 +96,7 @@ namespace Center.API.Controllers
             }
             await   _teacherRepository.CreateTeacherAsync(_mapper.Map<Teacher>(teacher));
             
-            return Created("", teacher);
+            return Created("", _mapper.Map<Teacher>(teacher));
         }
 
         // DELETE: api/Teachers/5
