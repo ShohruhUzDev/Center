@@ -1,4 +1,5 @@
-﻿using Center.API.Dtos;
+﻿using AutoMapper;
+using Center.API.Dtos;
 using Center.API.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -11,10 +12,12 @@ namespace Center.API.Data
     public class GroupRepository : IGroupRepository
     {
         private readonly CenterContext _centercontext;
+        private readonly IMapper _mapper;
 
-        public GroupRepository(CenterContext centerContext)
+        public GroupRepository(CenterContext centerContext , IMapper mapper)
         {
             _centercontext = centerContext;
+            _mapper = mapper;
         }
 
         public async Task AddStudentsToGroup(IList<Guid> studentsid, Guid groupid)
@@ -33,6 +36,7 @@ namespace Center.API.Data
                 {
                     grp.Students.Add(student);                }
             }
+            _centercontext.Entry(grp).State = EntityState.Modified;
             await _centercontext.SaveChangesAsync();
         }
 
@@ -69,16 +73,41 @@ namespace Center.API.Data
             return  _centercontext.Groups.Any(e => e.Id == id);
         }
 
-       
 
-        public async Task<IEnumerable<GroupDto>> GetAllGroupsAsync() =>(IEnumerable<GroupDto>) await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
-       
 
-      
+        public async Task<IEnumerable<GroupDto>> GetAllGroupsAsync()
+        {
+           
+          var grp= await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
 
-        public async Task<GroupDto> GetbyIdGroupAsync(Guid id) => (GroupDto) await _centercontext.Groups.Include(stu=>stu.Students).FirstOrDefaultAsync(i => i.Id == id);
-       
+            return _mapper.Map<IEnumerable< GroupDto>>(grp);
 
+        }
+
+
+        public async Task<GroupDto> GetbyIdGroupAsync(Guid id)
+        {
+            Group grp= await _centercontext.Groups.Include(stu => stu.Students).FirstOrDefaultAsync(i => i.Id == id);
+
+            //GroupDto groupDto = new GroupDto();
+            //groupDto.SubjectId = grp.SubjectId;
+            //groupDto.TeacherId = grp.TeacherId;
+            //groupDto.Id = grp.Id;
+            //groupDto.GroupName = grp.GroupName;
+
+            //foreach(var i in grp.Students)
+            //{
+            //    groupDto.Studentlar.Add(new UpdateStudentDto()
+            //    {
+            //        Id=i.Id,
+            //        FirstName=i.FirstName,
+            //        LastName=i.LastName,
+            //        Phone=i.Phone
+            //    });
+
+            //}
+            return _mapper.Map<GroupDto>(grp);
+        }
        
 
         //public async Task<IEnumerable<Group>> GetGroupsBySubjectId(int subjectId)
