@@ -11,9 +11,9 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
     {
         Task<IEnumerable<Teacher>> GetAllTeachersAsync();
         Task<Teacher> GetbyIdTeacherAsync(Guid id);
-        Task<bool> CreateTeacherAsync(TeacherForCreationDto teacher);
-        Task<bool> UpdateTeacherAsync(Guid id, Teacher teacher);
-        Task<bool> DeleteTeacher(Guid id);
+        Task<string> CreateTeacherAsync(TeacherForCreationDto teacher);
+        Task<string> UpdateTeacherAsync(Guid id, Teacher teacher);
+        Task<string> DeleteTeacher(Guid id);
        // bool ExistTeacher(Guid id);
     }
 }
