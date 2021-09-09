@@ -25,7 +25,7 @@ namespace Center.API.Models
         public Guid SubjectId { get; set; }
         public Subject Subject { get; set; }
 
-        public virtual ICollection<Student> Students { get; set; }
+        public  ICollection<Student> Students { get; set; }
       
 
         public Group()
