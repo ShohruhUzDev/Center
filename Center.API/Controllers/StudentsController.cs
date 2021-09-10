@@ -81,17 +81,39 @@ namespace Center.API.Controllers
         // POST: api/Students
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Student>> PostStudent([FromBody] StudentForCreationDto student)
+        public async Task<ActionResult<StudentDto>> PostStudent([FromBody] CreateStudentDto student)
         {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+
             var studentdto = _mapper.Map < Student > (student);
 
-          await  _studentRepository.CreateStudentAsync(student.Ids, studentdto);
-           
-            
+            await _studentRepository.CreateStudentAsync(studentdto);
+            //  await  _studentRepository.CreateStudentAsync(student.Ids, studentdto);
 
-            return Created("", student);
+            var readstudent = _mapper.Map<StudentDto>(studentdto);
+
+            return Created("", readstudent);
         }
 
+
+        [HttpPut]
+        public async Task<ActionResult> AddGroupsToStudent([FromBody] AddGroupsToStudent addGroupsToStudent)
+        {
+            if(!ModelState.IsValid)
+            {
+                return BadRequest();
+            }
+
+            await _studentRepository.AddGroupsToStudent(addGroupsToStudent.GroypsId, addGroupsToStudent.StudentId);
+
+            var readstudent = await _studentRepository.GetbyIdStudentAsync(addGroupsToStudent.StudentId);
+
+            return Ok(readstudent);
+        }
         // DELETE: api/Students/5
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteStudent(Guid id)
