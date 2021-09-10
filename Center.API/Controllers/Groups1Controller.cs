@@ -97,7 +97,7 @@ namespace Center.API.Controllers
         // POST: api/Groups1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Group>> PostGroup([FromBody]  CustomGroupDto group1)
+        public async Task<ActionResult<Group>> PostGroup([FromBody]  CreateGroupDto group1)
         {
          if(!ModelState.IsValid)
             {
