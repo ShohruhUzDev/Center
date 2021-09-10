@@ -15,18 +15,29 @@ namespace Center.API.Data
         {
             _studentContext = studentContext;
         }
-        public async Task CreateStudentAsync(IList<Guid> ids, Student student)
-        {
-            foreach(var id in ids)
-            {
-                var grp = await _studentContext.Groups.FirstOrDefaultAsync(i => i.Id == id);
 
-                if(grp is not null)
+        public async Task AddGroupsToStudent(IList<Guid> GroupsId, Guid studentId)
+        {
+            Student std =await  _studentContext.Students.FirstOrDefaultAsync(i => i.Id == studentId);
+
+            foreach(var j in GroupsId)
+            {
+                var grp = await _studentContext.Groups.FirstOrDefaultAsync(i => i.Id == j);
+
+                if (grp is not null)
                 {
-                    student.Groups.Add(grp);
+                    std.Groups.Add(grp);
                 }
             }
-            await _studentContext.Students.AddAsync(student);
+            _studentContext.Entry(std).State = EntityState.Modified;
+           await _studentContext.SaveChangesAsync();
+        }
+
+        
+
+        public async Task CreateStudentAsync(Student student)
+        {
+             await _studentContext.Students.AddAsync(student);
             await _studentContext.SaveChangesAsync();
         }
 
