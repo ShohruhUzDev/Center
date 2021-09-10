@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
 namespace Center.API.Dtos
 {
-    public class CustomStudentDto
+    public class CreateStudentDto
     {
         [Required(ErrorMessage = "FirstName is Required")]
         [MaxLength(20, ErrorMessage = "FirstName length very long")]
@@ -23,14 +24,27 @@ namespace Center.API.Dtos
         [MaxLength(20, ErrorMessage = "Phone length very long")]
         public string Phone { get; set; }
     }
-    public class StudentDto:CustomStudentDto
+    public class StudentDto
     {
         public Guid Id { get; set; }
+ 
+        public string FirstName { get; set; }
+      
+        public string LastName { get; set; }
+       
+        public string Phone { get; set; }
         public ICollection<UpdateGroupDto > Groups { get; set; }
     }
-    public class StudentForCreationDto:CustomStudentDto
+    public class AddGroupsToStudent
     {
-        public IList<Guid> Ids { get; set; }
+        [Key]
+        [Required]
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
+        public Guid StudentId { get; set; }
+       
+        [Required]
+
+        public IList<Guid> GroypsId { get; set; }
     }
     public class UpdateStudentDto
     {
