@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Dtos
 {
-    public class CustomGroupDto
+    public class CreateGroupDto
     {
         [Required(ErrorMessage = "GroupName is Required")]
         [MaxLength(20, ErrorMessage = "GroupName length is very long")]
@@ -36,10 +36,7 @@ namespace Center.API.Dtos
         public ICollection<UpdateStudentDto> Students { get; set; }
     
     }
-    public class GroupFroCreationDto: CustomGroupDto
-    {
-        public IList<Guid> Ids { get; set; }
-    }
+  
     public class UpdateGroupDto
     {
         public Guid Id { get; set; }
@@ -55,7 +52,8 @@ namespace Center.API.Dtos
         public Guid SubjectId { get; set; }
 
     }
-    public class GroupForAddStudents    {
+    public class GroupForAddStudents  
+    {
 
         public Guid GroupId { get; set; }
         public IList<Guid> StudentIds { get; set; }
