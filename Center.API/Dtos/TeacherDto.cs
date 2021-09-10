@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Dtos
 {
-    public class CustomTeacherDto
+    public class ReadTeacherDto
     {
         public Guid Id { get; set; }
 
@@ -27,7 +27,7 @@ namespace Center.API.Dtos
         public string Phone { get; set; }
 
     }
-    public class TeacherDto:CustomTeacherDto
+    public class TeacherDto: ReadTeacherDto
     {
        
         public ICollection<UpdateGroupDto> Groups { get; set; }
