@@ -56,7 +56,7 @@ namespace Center.API.Controllers
         // PUT: api/Teachers/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutTeacher(Guid id,[FromBody] CustomTeacherDto teacher)
+        public async Task<IActionResult> PutTeacher(Guid id,[FromBody] ReadTeacherDto teacher)
         {
             if (id != teacher.Id)
             {
