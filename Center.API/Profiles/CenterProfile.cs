@@ -14,13 +14,13 @@ namespace Center.API.Profiles
         public CenterProfile()
         {
             CreateMap< Group, GroupDto>().ReverseMap();
-            CreateMap< Group, GroupFroCreationDto>().ReverseMap();
+            CreateMap< Group, CreateGroupDto>().ReverseMap();
             CreateMap< Group, UpdateGroupDto>().ReverseMap();
-            CreateMap< Group, CustomGroupDto>().ReverseMap();
+         //   CreateMap< Group, CustomGroupDto>().ReverseMap();
 
 
             CreateMap<Student, StudentDto>().ReverseMap();
-            CreateMap<Student, StudentForCreationDto>().ReverseMap();
+            CreateMap<Student, CreateStudentDto>().ReverseMap();
             CreateMap<Student, UpdateStudentDto>().ReverseMap();
 
             CreateMap<Subject, SubjectDto>().ReverseMap();
@@ -29,7 +29,7 @@ namespace Center.API.Profiles
 
             CreateMap<Teacher, TeacherDto>().ReverseMap();
             CreateMap<Teacher, TeacherForCreationDto>().ReverseMap();
-            CreateMap<Teacher, CustomTeacherDto>().ReverseMap();
+            CreateMap<Teacher, ReadTeacherDto>().ReverseMap();
 
 
 
