@@ -10,7 +10,8 @@ namespace Center.API.Data
     {
         Task<IEnumerable<Student>> GetAllStudentsAsync();
         Task<Student> GetbyIdStudentAsync(Guid id);
-        Task CreateStudentAsync(IList<Guid> ids, Student student);
+        Task CreateStudentAsync(Student student);
+        Task AddGroupsToStudent(IList<Guid> GroupsId, Guid studentId);
         Task UpdateStudentAsync(Student student);
         Task DeleteStudent(Guid id);
         bool ExistStudent(Guid id);
