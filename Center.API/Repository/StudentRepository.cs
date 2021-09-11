@@ -18,7 +18,8 @@ namespace Center.API.Data
 
         public async Task AddGroupsToStudent(IList<Guid> GroupsId, Guid studentId)
         {
-            Student std =await  _studentContext.Students.FirstOrDefaultAsync(i => i.Id == studentId);
+          
+         Student std =await  _studentContext.Students.FirstOrDefaultAsync(i => i.Id == studentId);
 
             foreach(var j in GroupsId)
             {
