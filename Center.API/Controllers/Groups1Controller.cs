@@ -31,21 +31,13 @@ namespace Center.API.Controllers
         [HttpGet]
         public async Task<ActionResult> GetGroups()
         {
+
             var studentlist = new List< UpdateStudentDto>();
             var group= await _groupRepository.GetAllGroupsAsync();
-            //foreach (var grp in group)
-            //{
-            //    foreach(var j in grp.Studentlar)
-            //    {
-            //        studentlist.Add(_mapper.Map<UpdateStudentDto>(j));
-            //        grp.Studentlar.Remove(j);
-                    
-            //    }
-            //    grp.Studentlar = studentlist;
-            //}
+            
             
             return Ok(_mapper.Map<IEnumerable<GroupDto>>(group));
-            //return Ok(group);
+           
         }
 
         // GET: api/Groups1/5
@@ -91,13 +83,13 @@ namespace Center.API.Controllers
                 }
             }
 
-            return NoContent();
+            return Ok(group1);
         }
 
         // POST: api/Groups1
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPost]
-        public async Task<ActionResult<Group>> PostGroup([FromBody]  CreateGroupDto group1)
+        public async Task<ActionResult> PostGroup([FromBody]  CreateGroupDto group1)
         {
          if(!ModelState.IsValid)
             {
@@ -121,7 +113,7 @@ namespace Center.API.Controllers
             {
                 return BadRequest();
             }
-            // var grp = _mapper.Map<Group>(group1);
+           
 
             await _groupRepository.AddStudentsToGroup(group1.StudentIds, group1.GroupId);
 
@@ -148,9 +140,6 @@ namespace Center.API.Controllers
             return NoContent();
         }
 
-        //private bool GroupExists(Guid id)
-        //{
-        //    return _context.Groups.Any(e => e.Id == id);
-        //}
+      
     }
 }
