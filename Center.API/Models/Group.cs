@@ -18,11 +18,11 @@ namespace Center.API.Models
         public string GroupName { get; set; }
 
        
-        public Guid TeacherId { get; set; }
+        public Guid? TeacherId { get; set; }
         public Teacher Teacher { get; set; }
 
 
-        public Guid SubjectId { get; set; }
+        public Guid? SubjectId { get; set; }
         public Subject Subject { get; set; }
 
         public  ICollection<Student> Students { get; set; }
