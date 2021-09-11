@@ -32,9 +32,7 @@ namespace Center.API.Controllers
         public async Task<ActionResult> GetTeachers()
         {
             var teacher= await _teacherRepository.GetAllTeachersAsync();
-            //var teacherdto = new TeacherDto();
-
-            //teacherdto.Guruhlar.Add(_mapper.Map < IEnumerable<CustomGroupDto>>(teacher.Groups));
+          
             
             return Ok(_mapper.Map<IEnumerable< TeacherDto>>(teacher));
         }
@@ -81,8 +79,8 @@ namespace Center.API.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
+            var teach = await _teacherRepository.GetbyIdTeacherAsync(teacher.Id);
+            return Ok(teach);
         }
 
         // POST: api/Teachers
