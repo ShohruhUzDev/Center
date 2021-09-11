@@ -12,7 +12,7 @@ using Center.API.Dtos;
 
 namespace Center.API.Controllers
 {
-    [Route("api/[controller]")]
+    [Route("api/[controller]/[action]")]
     [ApiController]
     public class StudentsController : ControllerBase
     {
@@ -49,34 +49,34 @@ namespace Center.API.Controllers
 
         // PUT: api/Students/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
-        //[HttpPut("{id}")]
-        //public async Task<IActionResult> PutStudent(Guid id, Student student)
-        //{
-        //    if (id != student.Id)
-        //    {
-        //        return BadRequest();
-        //    }
+        [HttpPut("{id}")]
+        public async Task<IActionResult> PutStudent(Guid id, UpdateStudentDto student)
+        {
+            if (id != student.Id)
+            {
+                return BadRequest();
+            }
 
-        //    _context.Entry(student).State = EntityState.Modified;
+           
 
-        //    try
-        //    {
-        //        await _context.SaveChangesAsync();
-        //    }
-        //    catch (DbUpdateConcurrencyException)
-        //    {
-        //        if (!StudentExists(id))
-        //        {
-        //            return NotFound();
-        //        }
-        //        else
-        //        {
-        //            throw;
-        //        }
-        //    }
+            try
+            {
+                await _studentRepository.UpdateStudentAsync(_mapper.Map<Student>(student));
+            }
+            catch (DbUpdateConcurrencyException)
+            {
+                if (!_studentRepository.ExistStudent(id))
+                {
+                    return NotFound();
+                }
+                else
+                {
+                    throw;
+                }
+            }
 
-        //    return NoContent();
-        //}
+            return Ok(student);
+        }
 
         // POST: api/Students
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
@@ -108,7 +108,7 @@ namespace Center.API.Controllers
                 return BadRequest();
             }
 
-            await _studentRepository.AddGroupsToStudent(addGroupsToStudent.GroypsId, addGroupsToStudent.StudentId);
+            await _studentRepository.AddGroupsToStudent(addGroupsToStudent.GroupsId, addGroupsToStudent.StudentId);
 
             var readstudent = await _studentRepository.GetbyIdStudentAsync(addGroupsToStudent.StudentId);
 
@@ -127,12 +127,9 @@ namespace Center.API.Controllers
            await _studentRepository.DeleteStudent(id);
            
 
-            return NoContent();
+            return Ok("true");
         }
 
-        //private bool StudentExists(Guid id)
-        //{
-        //    return _context.Students.Any(e => e.Id == id);
-        //}
+       
     }
 }
