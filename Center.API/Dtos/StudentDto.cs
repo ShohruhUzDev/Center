@@ -44,7 +44,7 @@ namespace Center.API.Dtos
        
         [Required]
 
-        public IList<Guid> GroypsId { get; set; }
+        public IList<Guid> GroupsId { get; set; }
     }
     public class UpdateStudentDto
     {
