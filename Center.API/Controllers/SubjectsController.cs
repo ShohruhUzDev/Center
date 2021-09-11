@@ -76,8 +76,8 @@ namespace Center.API.Controllers
                     throw;
                 }
             }
-
-            return NoContent();
+            var subj = await _subjectRepository.GetbyIdSubjectAsync(subject.Id);
+            return Ok(subj);
         }
 
         // POST: api/Subjects
@@ -107,7 +107,7 @@ namespace Center.API.Controllers
 
             await _subjectRepository.DeleteSubject(id);
 
-            return NoContent();
+            return Ok("true");
         }
 
      
