@@ -17,10 +17,7 @@ namespace Center.API.Data
         Task DeleteGroup(Guid id);
         bool ExistGroup(Guid id);
         Task AddStudentsToGroup(IList<Guid> studentsid, Guid groupid);
-    //    Task<IEnumerable<Student>> GetAllStudentsByGroupId(int groupId);
-        //Task<IEnumerable< Group>> GetGroupsByTeacherId(int teacherId);
-        //Task<IEnumerable< Group>> GetGroupsBySubjectId(int subjectId);
-
+   
 
     }
 }
