@@ -51,7 +51,7 @@ namespace Center.API.Controllers
         // PUT: api/Subjects/5
         // To protect from overposting attacks, see https://go.microsoft.com/fwlink/?linkid=2123754
         [HttpPut("{id}")]
-        public async Task<IActionResult> PutSubject(Guid id, CustomSubjectDto subject)
+        public async Task<IActionResult> PutSubject(Guid id, ReadSubjectDto subject)
         {
             if (id != subject.Id)
             {
