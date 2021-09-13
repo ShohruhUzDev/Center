@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Dtos
 {
-    public class CustomSubjectDto
+    public class ReadSubjectDto
     {
         public Guid Id { get; set; }
 
@@ -20,7 +20,7 @@ namespace Center.API.Dtos
 
         public int Price { get; set; }
     }
-    public class SubjectDto : CustomSubjectDto
+    public class SubjectDto :ReadSubjectDto
     {
        
         public ICollection<UpdateGroupDto> Groups { get; set; }
