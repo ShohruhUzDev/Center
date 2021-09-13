@@ -1,4 +1,5 @@
 ﻿using Center.API.Dtos;
+using Center.Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Center.Desktop.ServiceLayer.GroupService
 {
    public  interface IGroupService
     {
-        Task<IEnumerable<GroupDto>> GetAllGroups();
-        Task<GroupDto> GetByIdGroup(Guid groupid);
+        Task<IEnumerable<GroupViewModel>> GetAllGroups();
+        Task<GroupViewModel> GetByIdGroup(Guid groupid);
         Task<string> CreateGroup(CreateGroupDto createGroupDto);
         Task<string> UpdateGroup(Guid id,  UpdateGroupDto updateGroupDto);
         Task<string> DeleteGroup(Guid groupid);
