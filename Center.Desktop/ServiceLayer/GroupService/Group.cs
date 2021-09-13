@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Center.API.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -11,25 +12,25 @@ namespace Center.Desktop.ServiceLayer.GroupService
 {
     public class Group
     {
-        [JsonProperty("Id")]
+        [JsonProperty("id")]
         [Key]
         [Required]
         [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public Guid Id { get; set; }
 
 
-        [JsonProperty("GroupName")]
+        [JsonProperty("groupName")]
         [Required(ErrorMessage = "GroupName is Required")]
         [MaxLength(20, ErrorMessage = "GroupName length is very long")]
         public string GroupName { get; set; }
 
 
-        [JsonProperty("TeacherId")]
+        [JsonProperty("teacherId")]
 
         public Guid? TeacherId { get; set; }
         public Teacher Teacher { get; set; }
 
-        [JsonProperty("SubjectId")]
+        [JsonProperty("subjectId")]
 
         public Guid? SubjectId { get; set; }
         public Subject Subject { get; set; }
