@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using Center.API.Dtos;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -29,8 +30,9 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
 
         public string Phone { get; set; }
 
+        [JsonProperty("Groups")]
 
-        //public virtual ICollection<Group> Groups { get; set; }
+        public ICollection<UpdateGroupDto> Groups { get; set; }
         //public Teacher()
         //{
         //    Groups = new List<Group>();

@@ -109,46 +109,53 @@
 
                 
                 <!--Fan buyicha saralash combobox-->
-                <Border CornerRadius="10 " Height="35" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="100" Background="Transparent" Margin="50 5 10 10">
+                <Border 
+                    CornerRadius="10 "
+                    Height="45"
+                    BorderThickness="1"
+                    BorderBrush="Black"
+                    HorizontalAlignment="Left"
+                    Width="150"
+                    Background="Transparent" 
+                    Margin="50 5 10 5">
 
 
-                    <ComboBox md:HintAssist.Hint="Fan" md:HintAssist.Foreground="Black" md:HintAssist.HintOpacity="0.5" FontSize="13"   Width="70">
-                        <ComboBoxItem>
-                            Ona-Tili
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Matematika
-                        </ComboBoxItem>
-
-                        <ComboBoxItem>
-                            Fizika
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            Ingliz-tili
-                        </ComboBoxItem>
+                    <ComboBox
+                        Name="Subjectlar_Cbx"
+                         Width="130"
+                        md:HintAssist.Hint="Fan"
+                        md:HintAssist.Foreground="Indigo"
+                        md:HintAssist.HintOpacity="0.5"
+                        FontSize="13"
+                        
+                       >
+                       
                     </ComboBox>
 
 
 
                 </Border>
 
-                <Border CornerRadius="10 " Height="40" BorderThickness="1" BorderBrush="Black" HorizontalAlignment="Left" Width="100" Background="Transparent" Margin="15 5 20 10">
+                <Border CornerRadius="10 "
+                        Height="45"
+                        BorderThickness="1"
+                        BorderBrush="Black"
+                        HorizontalAlignment="Left"
+                        Width="170"
+                        Background="Transparent"
+                        Margin="15 5 20 5">
 
 
-                    <ComboBox md:HintAssist.Hint="O'qituvchi" md:HintAssist.Foreground="Black" md:HintAssist.HintOpacity="0.5" FontSize="13"   Width="70">
-                        <ComboBoxItem>
-                            104
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            102
-                        </ComboBoxItem>
-
-                        <ComboBoxItem>
-                            105
-                        </ComboBoxItem>
-                        <ComboBoxItem>
-                            104
-                        </ComboBoxItem>
+                    <ComboBox 
+                        Name="Teacherlar_Cbx"
+                        md:HintAssist.Hint="O'qituvchi"
+                              md:HintAssist.Foreground="Indigo"
+                              md:HintAssist.HintOpacity="0.5"
+                              FontSize="13"
+                              Width="150"
+                              >
+                        
+                        
                     </ComboBox>
                 </Border>
 
@@ -156,11 +163,123 @@
             </DockPanel>
 
             <DataGrid 
+                x:Name="Guruh_datagrid"
+                HorizontalGridLinesBrush="DarkGray"
+                RowBackground="LightGray"
+                AlternatingRowBackground="White"
+                AutoGenerateColumns="False"
+                IsReadOnly="True"
                       Height="355"
-                      Margin="10 10 10 10" 
+                      Margin="10 15 10 10" 
                       BorderThickness="1"
                       BorderBrush="Black" >
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="50" />
+                    <DataGridTextColumn Binding="{Binding GuruhNomi}" Header="Guruh Nomi" Width="150" />
+                    <DataGridTextColumn Binding="{Binding Uqituvchi}" Header="Uqituvchi" Width="150" />
+                    <DataGridTextColumn Binding="{Binding Fan}" Header="Fan" Width="150" />
+                    <DataGridTemplateColumn Header="Uquvchilar" Width="150">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Students}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectedItem="{Binding Students}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTemplateColumn Header="" Width="400">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <StackPanel
+                                    Orientation="Horizontal"
+                                    Margin="0 10 0 0 ">
+                                    <Button x:Name="Delete_btn"
+                                          Margin="0 0 10 0"
+                                            Height="35"
+                                            
+                                            md:ShadowAssist.ShadowDepth="Depth4"
+                                            Background="#F93E3E"
+                                            md:ButtonAssist.CornerRadius="10"
+                                            BorderThickness="0.1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <md:PackIcon 
+                                                HorizontalAlignment="Left"
+                                                Kind="Trash"
+                                                Foreground="#10bce3"
+                                                Height="30"
+                                                Width="30"/>
+                                            <TextBlock  Text="Delete"
+                                                        VerticalAlignment="Bottom"
+                                                        
+                                                        Foreground=" Black"
+                                                        Opacity="0.7"
+                                                        FontSize="16"
+                                                        />
+                                        </StackPanel>
+                                    </Button>
 
+                                    <Button x:Name="Edit_btn"
+                                           Margin="0 0 10 0"
+                                            Height="35"
+                                           
+                                            md:ShadowAssist.ShadowDepth="Depth4"
+                                            Background="#FCA130"
+                                            md:ButtonAssist.CornerRadius="10"
+                                            BorderThickness="0.1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <md:PackIcon 
+                                                HorizontalAlignment="Left"
+                                                Kind="Pen"
+                                                Foreground="#1d50d1"
+                                                Height="30"
+                                                Width="30"/>
+                                            <TextBlock  Text="Edit"
+                                                        VerticalAlignment="Bottom"
+                                                        Foreground=" Black"
+                                                        Opacity="0.7"
+                                                        FontSize="16" 
+                                                       />
+                                        </StackPanel>
+                                    </Button>
+
+                                    <Button x:Name="Info_btn"
+                                           Margin="0 0 10 0"
+                                            Height="35"
+                                           
+                                            md:ShadowAssist.ShadowDepth="Depth4"
+                                            Background="#61AFFE"
+                                            md:ButtonAssist.CornerRadius="10"
+                                            BorderThickness="0.1">
+                                        <StackPanel Orientation="Horizontal">
+                                            <md:PackIcon 
+                                                HorizontalAlignment="Left"
+                                                Kind="Information"
+                                                Foreground="#73baf0"
+                                                Height="30"
+                                                Width="30"/>
+                                            <TextBlock  Text="Info"
+                                                        VerticalAlignment="Bottom"
+                                                        Foreground=" Black"
+                                                        Opacity="0.7"
+                                                        FontSize="16"
+                                                        />
+                                        </StackPanel>
+                                    </Button>
+                                </StackPanel>
+                                  </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                        <DataGridTemplateColumn.CellEditingTemplate>
+                            <DataTemplate>
+                                <ComboBox SelectedItem="{Binding Students}"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellEditingTemplate>
+                    </DataGridTemplateColumn>
+
+
+                </DataGrid.Columns>
 
             </DataGrid>
 
