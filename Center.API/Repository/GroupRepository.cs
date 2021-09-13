@@ -78,9 +78,21 @@ namespace Center.API.Data
         public async Task<IEnumerable<GroupDto>> GetAllGroupsAsync()
         {
            
-          var grp= await _centercontext.Groups.Include(stu => stu.Students).ToListAsync();
+          var grp= _mapper.Map<IEnumerable<GroupDto>>( await _centercontext.Groups.Include(stu => stu.Students).ToListAsync());
+            //List< GroupDto> groupDto = new List<GroupDto>();
 
-            return _mapper.Map<IEnumerable< GroupDto>>(grp);
+            foreach (var i in grp)
+            {
+                var teacher = await _centercontext.Teachers.FirstOrDefaultAsync(j => j.Id == i.TeacherId);
+                var subject = await _centercontext.Subjects.FirstOrDefaultAsync(l => l.Id == i.SubjectId);
+
+                i.Teacher = _mapper.Map<ReadTeacherDto>( teacher);
+                i.Subject = _mapper.Map<ReadSubjectDto>( subject);
+                  
+            }
+
+
+            return grp;
 
         }
 
