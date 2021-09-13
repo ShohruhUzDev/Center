@@ -24,7 +24,7 @@ namespace Center.API.Profiles
 
             CreateMap<Subject, SubjectDto>().ReverseMap();
             CreateMap<Subject, SubjectForCreationDto>().ReverseMap();
-            CreateMap<Subject, CustomSubjectDto>().ReverseMap();
+            CreateMap<Subject, ReadSubjectDto>().ReverseMap();
 
             CreateMap<Teacher, TeacherDto>().ReverseMap();
             CreateMap<Teacher, TeacherForCreationDto>().ReverseMap();
