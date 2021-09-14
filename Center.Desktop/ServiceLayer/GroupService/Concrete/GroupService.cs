@@ -62,23 +62,15 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
                 List<GroupViewModel> groupViewModels = new List<GroupViewModel>();
                 foreach (var i in groupDtos)
                 {
-                    var students = i.Students;
-                    List<string> stulist = new List<string>();
-                    foreach (var u in students)
-                    {
-                        stulist.Add(u.FirstName + u.LastName);
-                    }
-                    if(stulist is not null)
-                    {
-                        groupViewModels.Add(new GroupViewModel()
+                       groupViewModels.Add(new GroupViewModel()
                         {
                             Id = i.Id,
                             GuruhNomi = i.GroupName,
                             Fan = i.Subject?.SubjectName,
-                            Uqituvchi =(i.Teacher is not null)? i.Teacher.FirstName + i.Teacher?.LastName:"Yuq",
-                            Students = stulist
+                            Uqituvchi =(i.Teacher is not null)? i.Teacher.FirstName +" "+ i.Teacher?.LastName:"Yuq",
+                            Students = i.Students
                         });
-                    }
+                     
                    
                     
 
