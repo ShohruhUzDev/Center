@@ -1,4 +1,5 @@
 ﻿using Center.API.Dtos;
+using Center.Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,8 +10,8 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
 {
    public  interface ITeacherRepository
     {
-        Task<IEnumerable<Teacher>> GetAllTeachersAsync();
-        Task<Teacher> GetbyIdTeacherAsync(Guid id);
+        Task<IEnumerable<TeacherViewModel>> GetAllTeachersAsync();
+        Task<TeacherViewModel> GetbyIdTeacherAsync(Guid id);
         Task<string> CreateTeacherAsync(TeacherForCreationDto teacher);
         Task<string> UpdateTeacherAsync(Guid id, Teacher teacher);
         Task<string> DeleteTeacher(Guid id);
