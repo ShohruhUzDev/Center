@@ -1,4 +1,5 @@
 ﻿using Center.API.Dtos;
+using Center.Desktop.ViewModels;
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
@@ -54,7 +55,7 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
            
            
 
-        public async Task<IEnumerable<Teacher>> GetAllTeachersAsync()
+        public async Task<IEnumerable<TeacherViewModel>> GetAllTeachersAsync()
         {
             using (var client=new HttpClient())
             {
@@ -62,21 +63,36 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
                 var res = await client.GetAsync(client.BaseAddress);
                 string response = await res.Content.ReadAsStringAsync();
                 IEnumerable<Teacher> teachers = JsonConvert.DeserializeObject<IEnumerable<Teacher>>(response);
-                return teachers;
+
+                List<TeacherViewModel> teacherViewModels = new List<TeacherViewModel>();
+                foreach(var i in teachers)
+                {
+                    teacherViewModels.Add(new TeacherViewModel()
+                    {
+                        Id = i.Id,
+                        Name = i.FirstName + " " + i.LastName,
+                        Phone = i.Phone,
+                        Groups=i.Groups
+                    });
+
+                }
+
+                return teacherViewModels;
             }
           
            
         }
 
-        public async Task<Teacher> GetbyIdTeacherAsync(Guid id)
+        public  Task<TeacherViewModel> GetbyIdTeacherAsync(Guid id)
         {
             using(var client=new HttpClient())
             {
-                client.BaseAddress = new Uri(TeacherAPI.Get_URL);
-                var res = await client.GetAsync(client.BaseAddress + $"/{id}");
-                string response = await res.Content.ReadAsStringAsync();
-                Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
-                return teacher;
+                throw new NotImplementedException();
+                //client.BaseAddress = new Uri(TeacherAPI.Get_URL);
+                //var res = await client.GetAsync(client.BaseAddress + $"/{id}");
+                //string response = await res.Content.ReadAsStringAsync();
+                //Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
+                //return teacher;
             }
             
           
