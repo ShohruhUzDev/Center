@@ -33,9 +33,6 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
         [JsonProperty("Groups")]
 
         public ICollection<UpdateGroupDto> Groups { get; set; }
-        //public Teacher()
-        //{
-        //    Groups = new List<Group>();
-        //}
+       
     }
 }
