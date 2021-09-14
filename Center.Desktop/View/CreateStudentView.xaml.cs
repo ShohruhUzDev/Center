@@ -23,5 +23,10 @@ namespace Center.Desktop.View
         {
             InitializeComponent();
         }
+
+        private void Save_btn_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
     }
 }

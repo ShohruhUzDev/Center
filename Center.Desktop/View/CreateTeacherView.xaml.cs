@@ -2,6 +2,7 @@
 using Center.API.Dtos;
 using Center.Desktop.ServiceLayer.TeacherServie;
 using Center.Desktop.ServiceLayer.TeacherServie.Concrete;
+using Center.Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -24,6 +25,7 @@ namespace Center.Desktop.View
     public partial class CreateTeacherView : Window
     {
         ITeacherRepository teacherRepository = new TeacherRepository();
+     
         public CreateTeacherView()
         {
             InitializeComponent();
@@ -42,16 +44,41 @@ namespace Center.Desktop.View
                 };
 
 
-                string res = await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
+                TeacherViewModel teacher = new TeacherViewModel()
+                { 
+                    Name=FirstName_txt.Text+" "+LastName_txt.Text,
+                    Phone=Phone_txt.Text,
 
-                if (res is not null)
+                };
+
+
+
+
+                IEnumerable<TeacherViewModel> teacherViewModels = new List<TeacherViewModel>();
+                teacherViewModels = await teacherRepository.GetAllTeachersAsync();
+             
+                
+                // uqituvchi borligini tekshirish
+                if (teacherViewModels.Contains(teacher))
                 {
-                    MessageBox.Show("Yangi uqituvchi yaratildi");
+                    MessageBox.Show("Bu Uqituvchi mavjud");
                 }
+               
                 else
                 {
-                    MessageBox.Show("Xatolik yuz berdi");
+
+                    string res = await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
+
+                    if (res is not null)
+                    {
+                        MessageBox.Show("Yangi uqituvchi yaratildi");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Xatolik yuz berdi");
+                    }
                 }
+             
             }
             else
 
