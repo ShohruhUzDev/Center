@@ -7,58 +7,37 @@
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
                WindowStartupLocation="CenterScreen"
               mc:Ignorable="d" 
-           Height="510" Width="800" >
+           Height="370" Width="500"  >
     <Grid>
         <StackPanel Orientation="Horizontal">
-            <StackPanel Margin="0 0 10 0">
-                <StackPanel Background="White" HorizontalAlignment="Left"  Margin="0,0,0,11" >
-                    <TextBox x:Name="FirstName_txt" x:FieldModifier="public" TextWrapping="Wrap" Width="300" Height="50" HorizontalAlignment="Left" TextAlignment="Left" Margin="20 10 0 10" 
-                  materialDesign:HintAssist.Hint="FirstName" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
 
-                    </TextBox>
-                    <TextBox x:Name="LastName_txt"  x:FieldModifier="public" TextWrapping="Wrap" Width="300" Height="50" HorizontalAlignment="Left" TextAlignment="Left" Margin="20 10 0 10" 
-                  materialDesign:HintAssist.Hint="LastName" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+            <StackPanel  Background="White"  Margin="0,0,0,11" Width="497" >
+                <TextBox x:Name="SubjectName_txt" FontSize="17" x:FieldModifier="public" TextWrapping="Wrap" Width="300" Height="50" HorizontalAlignment="Left" TextAlignment="Left" Margin="20 10 0 10" 
+                  materialDesign:HintAssist.Hint="Fan nomi" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
 
-                    </TextBox>
-                    <TextBox x:Name="FullName_txt"  x:FieldModifier="public" TextWrapping="Wrap" Width="300" Height="50" HorizontalAlignment="Left" TextAlignment="Left" Margin="20 10 0 10" 
-                  materialDesign:HintAssist.Hint="FullName" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
+                </TextBox>
+                <TextBox x:Name="Price_txt" FontSize="17" x:FieldModifier="public" TextWrapping="Wrap" Width="300" Height="50" HorizontalAlignment="Left" TextAlignment="Left" Margin="20 10 0 10" 
+                  materialDesign:HintAssist.Hint="Narxi" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
 
-                    </TextBox>
-                    <DatePicker Name="DateOfBirth_dtpicker" materialDesign:HintAssist.Hint="Date Of Birth" Width="300" Height="50" HorizontalAlignment="Left"  Margin="20 10 0 10" >
-
-                    </DatePicker>
-                    <TextBox x:Name="Phone_txt"    Width="300" TextAlignment="Left" Height="50"  Margin="20 10 0 10" HorizontalAlignment="Left"
-                  materialDesign:HintAssist.Hint="Phone Number" Style="{StaticResource MaterialDesignFloatingHintTextBox}">
-
-                    </TextBox>
+                </TextBox>
+               
 
 
 
-
-                </StackPanel>
             </StackPanel>
+
             <StackPanel Margin="10 0 0 0 ">
-                <DatePicker Name="DateOfArrival_dtpicker" materialDesign:HintAssist.Hint="Date Of Arrival" Width="300" Height="50" HorizontalAlignment="Left"  Margin="20 10 0 10" >
 
-                </DatePicker>
-                <DatePicker  Width="300" Height="50" materialDesign:HintAssist.Hint="Date Of Leave" HorizontalAlignment="Left"  Margin="20 10 0 10" >
-
-                </DatePicker>
-                <ComboBox Name="Room_cbx"  x:FieldModifier="public" Height="50" Margin="20,10,10,10" Width="200" materialDesign:HintAssist.Hint="Room" HorizontalAlignment="Left"
-                      Background="White" Style="{StaticResource MaterialDesignFilledComboBox}">
-
-
-                </ComboBox>
             </StackPanel>
 
         </StackPanel>
-        <Button x:Name="Save_btn"  VerticalAlignment="Bottom" x:FieldModifier="public"  Margin="0 0 0 40 "  Height="40" Width="350" 
+        <Button x:Name="Save_btn" Click="Save_btn_Click"   VerticalAlignment="Bottom" x:FieldModifier="public"  Margin="0 0 0 40 "  Height="40" Width="350" 
                 materialDesign:ShadowAssist.ShadowDepth="Depth3"  BorderThickness="2">
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="FileDocumentBoxTick" HorizontalAlignment="Right" Height="30"
                                          VerticalAlignment="Center" Width="30"   />
-                <TextBlock HorizontalAlignment="Right"  VerticalAlignment="Center" FontSize="20" Margin="8">
-                    Save
+                <TextBlock HorizontalAlignment="Right" Text="Save"  VerticalAlignment="Center" FontSize="20" Margin="8">
+
                 </TextBlock>
             </StackPanel>
 
