@@ -1,4 +1,5 @@
-﻿using Center.Desktop.ServiceLayer.StudentService;
+﻿using Center.API.Dtos;
+using Center.Desktop.ServiceLayer.StudentService;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,7 +18,7 @@ namespace Center.Desktop.ViewModels
         public string Uqituvchi { get; set; }
               
         public string Fan { get; set; }
-        public ICollection<Student> Students { get; set; } = new List<Student>();
+        public ICollection<UpdateStudentDto> Students { get; set; } = new List<UpdateStudentDto>();
 
 
        
