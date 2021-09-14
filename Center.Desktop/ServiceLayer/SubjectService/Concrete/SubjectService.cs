@@ -1,4 +1,6 @@
 ﻿using Center.API.Dtos;
+using Center.Desktop.ViewModels;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,24 @@ namespace Center.Desktop.ServiceLayer.SubjectService.Concrete
 {
     public class SubjectService : ISubjectService
     {
-        public Task<string> CreateSubject(SubjectForCreationDto subjectForCreationDto)
+        public async Task<string> CreateSubject(SubjectForCreationDto subjectForCreationDto)
         {
           
             using (var client=new HttpClient())
             {
-                throw new NotImplementedException();
+                client.BaseAddress = new Uri(SubjectAPI.Post_URL);
+
+
+                string json = JsonConvert.SerializeObject(subjectForCreationDto);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var res = await client.PostAsync(client.BaseAddress, stringContent);
+
+                if(res.StatusCode==System.Net.HttpStatusCode.Created)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
             }
         }
 
@@ -24,17 +38,43 @@ namespace Center.Desktop.ServiceLayer.SubjectService.Concrete
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<Subject>> GetAllSubjects()
+        public async Task<IEnumerable<SubjectViewModel>> GetAllSubjects()
+        {
+            using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(SubjectAPI.GetAll_URL);
+
+                var res = await client.GetAsync(client.BaseAddress);
+
+                string response = await res.Content.ReadAsStringAsync();
+
+                IEnumerable<ReadSubject> readSubjects = JsonConvert.DeserializeObject<IEnumerable<ReadSubject>>(response);
+
+                List<SubjectViewModel> subjectViewModels = new List<SubjectViewModel>();
+
+                foreach(var i in readSubjects)
+                {
+                    subjectViewModels.Add(new SubjectViewModel()
+                    {
+                        Id=i.Id,
+                        SubjectName=i.SubjectName,
+                        Price=i.Price,
+                        Groups=i.Groups
+                    });
+
+                }
+
+
+                return subjectViewModels;
+            }
+        }
+
+        public Task<SubjectViewModel> GetByIdSubject(Guid id)
         {
             throw new NotImplementedException();
         }
 
-        public Task<Subject> GetByIdSubject(Guid id)
-        {
-            throw new NotImplementedException();
-        }
-
-        public Task<string> UpdateSubject(Guid id, CustomSubjectDto customSubjectDto)
+        public Task<string> UpdateSubject(Guid id, ReadSubjectDto customSubjectDto)
         {
             throw new NotImplementedException();
         }
