@@ -180,7 +180,7 @@
                       BorderThickness="1"
                       BorderBrush="Black" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Width="250" />
+                    <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Visibility="Hidden" Width="300" />
                     <DataGridTextColumn Binding="{Binding GuruhNomi}" Header="Guruh Nomi" Width="150" />
                     <DataGridTextColumn Binding="{Binding Uqituvchi}" Header="Uqituvchi" Width="150" />
                     <DataGridTextColumn Binding="{Binding Fan}" Header="Fan" Width="150" />
