@@ -1,4 +1,13 @@
-﻿using Center.Desktop.View;
+﻿using Center.Desktop.ServiceLayer.GroupService;
+using Center.Desktop.ServiceLayer.GroupService.Concrete;
+using Center.Desktop.ServiceLayer.StudentService;
+using Center.Desktop.ServiceLayer.StudentService.Concrete;
+using Center.Desktop.ServiceLayer.SubjectService;
+using Center.Desktop.ServiceLayer.SubjectService.Concrete;
+using Center.Desktop.ServiceLayer.TeacherServie;
+using Center.Desktop.ServiceLayer.TeacherServie.Concrete;
+using Center.Desktop.View;
+using Center.Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +30,12 @@ namespace Center.Desktop.UserControls
     /// </summary>
     public partial class Students : UserControl
     {
+        IGroupService _groupService = new GroupService();
+        ITeacherRepository teacherRepository = new TeacherRepository();
+        ISubjectService subjectService = new SubjectService();
+        IStudentService studentService = new StudentService();
+        IEnumerable<StudentViewModel> groupViewModel = new List<StudentViewModel>();
+
         public Students()
         {
             InitializeComponent();
@@ -30,6 +45,26 @@ namespace Center.Desktop.UserControls
         {
             CreateStudentView createStudentView = new CreateStudentView();
             createStudentView.ShowDialog();
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            groupViewModel = await studentService.GetAllStudentsAsync();
+
+
+            Student_datagrid.ItemsSource = groupViewModel;
+
+        }
+
+        private async void SearchStudent_txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string searchstudent = SearchStudent_txt.Text;
+
+            groupViewModel = await studentService.GetAllStudentsAsync();
+
+            var res = groupViewModel.Where(i => i.FullName.ToUpper().StartsWith(searchstudent.ToUpper()));
+
+            Student_datagrid.ItemsSource = res;
         }
     }
 }
