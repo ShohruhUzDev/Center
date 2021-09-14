@@ -1,4 +1,11 @@
-﻿using Center.Desktop.View;
+﻿using Center.Desktop.ServiceLayer.GroupService;
+using Center.Desktop.ServiceLayer.GroupService.Concrete;
+using Center.Desktop.ServiceLayer.SubjectService;
+using Center.Desktop.ServiceLayer.SubjectService.Concrete;
+using Center.Desktop.ServiceLayer.TeacherServie;
+using Center.Desktop.ServiceLayer.TeacherServie.Concrete;
+using Center.Desktop.View;
+using Center.Desktop.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,6 +28,10 @@ namespace Center.Desktop.UserControls
     /// </summary>
     public partial class Teachers : UserControl
     {
+        IGroupService _groupService = new GroupService();
+        ITeacherRepository teacherRepository = new TeacherRepository();
+        ISubjectService subjectService = new SubjectService();
+        IEnumerable<TeacherViewModel> teacherViewModels = new List<TeacherViewModel>();
         public Teachers()
         {
             InitializeComponent();
@@ -30,6 +41,26 @@ namespace Center.Desktop.UserControls
         {
             CreateTeacherView createTeacherView = new CreateTeacherView();
             createTeacherView.ShowDialog();
+        }
+
+        private async void UserControl_Loaded(object sender, RoutedEventArgs e)
+        {
+            IEnumerable<TeacherViewModel> teacherViewModels = new List<TeacherViewModel>();
+            teacherViewModels = await teacherRepository.GetAllTeachersAsync();
+
+            Teacher_datagrid.ItemsSource = teacherViewModels;
+        }
+
+        private async void SearchTeacher_txt_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            string teacher = SearchTeacher_txt.Text;
+
+            teacherViewModels = await teacherRepository.GetAllTeachersAsync();
+
+            // var resultgroup = groupViewModel.Where(i =>EF.Functions.Like(i.GuruhNomi, "%"+ groupname+"%"));
+            var resultteacher = teacherViewModels.Where(i => i.Name.ToUpper().StartsWith(teacher.ToUpper()));
+
+            Teacher_datagrid.ItemsSource = resultteacher;
         }
     }
 }
