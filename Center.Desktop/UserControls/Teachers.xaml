@@ -128,7 +128,7 @@
                       BorderThickness="1"
                       BorderBrush="Black" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Width="300" />
+                    <DataGridTextColumn  Binding="{Binding Id}" Visibility="Hidden" Header="Id" Width="300" />
                     <DataGridTextColumn Binding="{Binding Name}" Header="Ismi" Width="150" />
                     <DataGridTextColumn Binding="{Binding Phone}" Header="Telefon" Width="150" />
                     <DataGridTemplateColumn Header="" Width="400">
@@ -194,7 +194,7 @@
                                     </Button>
 
                                     <Button x:Name="Info_btn"
-                                           Margin="0 0 10 0"
+                                            Margin="0 0 10 0"
                                             Height="35"
                                            
                                             md:ShadowAssist.ShadowDepth="Depth4"
