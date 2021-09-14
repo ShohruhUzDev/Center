@@ -78,5 +78,11 @@ namespace Center.Desktop.Pages
             asosiy_oyna_grid.Children.Add(fanlar);
 
         }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Guruhlar guruhlar = new Guruhlar();
+            asosiy_oyna_grid.Children.Add(guruhlar);
+        }
     }
 }

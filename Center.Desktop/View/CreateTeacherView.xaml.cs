@@ -31,26 +31,42 @@ namespace Center.Desktop.View
 
         private async void Save_btn_Click(object sender, RoutedEventArgs e)
         {
-            TeacherForCreationDto teacherForCreationDto = new TeacherForCreationDto()
+            if(FirstName_txt.Text!=""&&LastName_txt.Text!=""&&Phone_txt.Text!="")
             {
-                FirstName = FirstName_txt.Text,
-                LastName = LastName_txt.Text,
-                Phone = Phone_txt.Text
+                TeacherForCreationDto teacherForCreationDto = new TeacherForCreationDto()
+                {
+                    FirstName = FirstName_txt.Text,
+                    LastName = LastName_txt.Text,
+                    Phone = Phone_txt.Text
 
-             };
+                };
+
+
+                string res = await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
+
+                if (res is not null)
+                {
+                    MessageBox.Show("Yangi uqituvchi yaratildi");
+                }
+                else
+                {
+                    MessageBox.Show("Xatolik yuz berdi");
+                }
+            }
+            else
+
+            {
+                MessageBox.Show("Malumotlar tuliq kiritilmadi");
+                FirstName_txt.Clear();
+                LastName_txt.Clear();
+                Phone_txt.Clear();
+                FirstName_txt.Focus();
+            }
+            
     
 
 
-             string  res=await teacherRepository.CreateTeacherAsync(teacherForCreationDto);
-
-            if(res is not null)
-            {
-                MessageBox.Show("Yangi uqituvchi yaratildi");
-            }
-            else
-            {
-                MessageBox.Show("Xatolik yuz berdi");
-            }
+            
         }
     }
 }
