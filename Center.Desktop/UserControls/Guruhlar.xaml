@@ -89,6 +89,8 @@
 
 
                         <TextBox 
+                            x:Name="SearchGroup_txt"
+                            TextChanged="TextBox_TextChanged"
                                  md:HintAssist.Hint="Nomi"
                                  md:HintAssist.Foreground="Black"
                                  md:HintAssist.HintOpacity="0.4"
@@ -99,7 +101,7 @@
                                  VerticalContentAlignment="Center"
                                  Padding="1" 
                                  BorderThickness="0" 
-                                 Text="">
+                                 >
 
                         </TextBox>
 
@@ -121,6 +123,7 @@
 
 
                     <ComboBox
+                        SelectionChanged="Subjectlar_Cbx_SelectionChanged"
                         Name="Subjectlar_Cbx"
                          Width="130"
                         md:HintAssist.Hint="Fan"
@@ -148,6 +151,7 @@
 
                     <ComboBox 
                         Name="Teacherlar_Cbx"
+                        SelectionChanged="Teacherlar_Cbx_SelectionChanged"
                         md:HintAssist.Hint="O'qituvchi"
                               md:HintAssist.Foreground="Indigo"
                               md:HintAssist.HintOpacity="0.5"
@@ -169,27 +173,17 @@
                 AlternatingRowBackground="White"
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
+                FontSize="15"
+                VerticalAlignment="Center"
                       Height="355"
                       Margin="10 15 10 10" 
                       BorderThickness="1"
                       BorderBrush="Black" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn Binding="{Binding Id}" Header="Id" Width="50" />
+                    <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Width="250" />
                     <DataGridTextColumn Binding="{Binding GuruhNomi}" Header="Guruh Nomi" Width="150" />
                     <DataGridTextColumn Binding="{Binding Uqituvchi}" Header="Uqituvchi" Width="150" />
                     <DataGridTextColumn Binding="{Binding Fan}" Header="Fan" Width="150" />
-                    <DataGridTemplateColumn Header="Uquvchilar" Width="150">
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <TextBlock Text="{Binding Students}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                        <DataGridTemplateColumn.CellEditingTemplate>
-                            <DataTemplate>
-                                <ComboBox SelectedItem="{Binding Students}"/>
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellEditingTemplate>
-                    </DataGridTemplateColumn>
                     <DataGridTemplateColumn Header="" Width="400">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
@@ -197,6 +191,7 @@
                                     Orientation="Horizontal"
                                     Margin="0 10 0 0 ">
                                     <Button x:Name="Delete_btn"
+                                            Click="Delete_btn_Click"
                                           Margin="0 0 10 0"
                                             Height="35"
                                             
@@ -206,17 +201,19 @@
                                             BorderThickness="0.1">
                                         <StackPanel Orientation="Horizontal">
                                             <md:PackIcon 
+                                                VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Kind="Trash"
                                                 Foreground="#10bce3"
-                                                Height="30"
-                                                Width="30"/>
+                                                Height="25"
+                                                Margin="5"
+                                                Width="25"/>
                                             <TextBlock  Text="Delete"
-                                                        VerticalAlignment="Bottom"
-                                                        
+                                                        VerticalAlignment="Center"
+                                                        Height="30"
                                                         Foreground=" Black"
                                                         Opacity="0.7"
-                                                        FontSize="16"
+                                                                                                                FontSize="18"
                                                         />
                                         </StackPanel>
                                     </Button>
@@ -231,16 +228,20 @@
                                             BorderThickness="0.1">
                                         <StackPanel Orientation="Horizontal">
                                             <md:PackIcon 
+                                                VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Kind="Pen"
                                                 Foreground="#1d50d1"
                                                 Height="30"
+                                                Margin="5"
                                                 Width="30"/>
                                             <TextBlock  Text="Edit"
-                                                        VerticalAlignment="Bottom"
+                                                        Height="30"
+                                                        VerticalAlignment="Center"
                                                         Foreground=" Black"
                                                         Opacity="0.7"
-                                                        FontSize="16" 
+                                                        
+                                                                                                                FontSize="18" 
                                                        />
                                         </StackPanel>
                                     </Button>
@@ -255,16 +256,21 @@
                                             BorderThickness="0.1">
                                         <StackPanel Orientation="Horizontal">
                                             <md:PackIcon 
+                                                VerticalAlignment="Center"
                                                 HorizontalAlignment="Left"
                                                 Kind="Information"
-                                                Foreground="#73baf0"
+                                                Foreground="LightBlue"
+                                                Height="25"
+                                                Margin="5"
+                                                Width="25"/>
+                                            <TextBlock
+                                                Text="Info"
                                                 Height="30"
-                                                Width="30"/>
-                                            <TextBlock  Text="Info"
-                                                        VerticalAlignment="Bottom"
+                                                
+                                                        VerticalAlignment="Center"
                                                         Foreground=" Black"
                                                         Opacity="0.7"
-                                                        FontSize="16"
+                                                        FontSize="18"
                                                         />
                                         </StackPanel>
                                     </Button>
