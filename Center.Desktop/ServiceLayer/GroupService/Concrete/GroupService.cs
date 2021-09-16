@@ -84,18 +84,32 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
 
 
 
-            public Task<GroupViewModel> GetByIdGroup(Guid groupid)
+            public async Task<GroupViewModel> GetByIdGroup(Guid groupid)
             {
-                throw new NotImplementedException();
-                //using (var client=new HttpClient())
-                // {
-                //     client.BaseAddress = new Uri(GroupAPI.Get_URL + $"{groupid}");
-                //     var res = await client.GetAsync(client.BaseAddress);
-                //     string response = await res.Content.ReadAsStringAsync();
-                //     GroupDto groupDto = mapper.Map<GroupDto>( JsonConvert.DeserializeObject<Group>(response));
-                //     return groupDto;
-                // }
+               
+            using (var client = new HttpClient())
+            {
+                client.BaseAddress = new Uri(GroupAPI.Get_URL + $"{groupid}");
+                var res = await client.GetAsync(client.BaseAddress);
+                string response = await res.Content.ReadAsStringAsync();
+                ReadGroup readGroup =(JsonConvert.DeserializeObject<ReadGroup>(response));
+
+                GroupViewModel groupViewModel = new GroupViewModel()
+                {
+                    Id=readGroup.Id,
+                    GuruhNomi=readGroup.GroupName,
+                    Fan=(readGroup.Subject is not null)? readGroup.Subject.SubjectName: "Yuq",
+                    Uqituvchi=(readGroup.Teacher is not null)? readGroup.Teacher.FirstName+" "+ readGroup.Teacher.LastName:"Yuq",
+                    Students=readGroup.Students
+                    
+                };
+
+
+
+
+                return groupViewModel;
             }
+        }
 
             public async Task<string> UpdateGroup(Guid id, UpdateGroupDto updateGroupDto)
             {
