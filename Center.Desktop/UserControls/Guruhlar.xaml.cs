@@ -1,4 +1,5 @@
 ﻿using Center.API.Dtos;
+using Center.Desktop.EditViews;
 using Center.Desktop.ExternalModels;
 using Center.Desktop.ServiceLayer;
 using Center.Desktop.ServiceLayer.GroupService;
@@ -12,6 +13,7 @@ using Center.Desktop.ViewModels;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
@@ -52,7 +54,12 @@ namespace Center.Desktop.Pages.UserControls
         private async void UserControl_Loaded(object sender, RoutedEventArgs e)
         {
 
-           
+
+            
+
+
+
+
             groupViewModel = await _groupService.GetAllGroups();
 
             Guruh_datagrid.ItemsSource = groupViewModel;
@@ -143,10 +150,33 @@ namespace Center.Desktop.Pages.UserControls
 
         private void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
+
+            DataGrid dataGrid = Guruh_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+            MessageBox.Show(CellValue);
+
+
+
             
-            //DataGridRow dataGridRow = sender as DataGridRow ;
-            //var fff= dataGridRow.Item[0]
-            //MessageBox.Show()
         }
+
+        private void Edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Guruh_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+
+            GroupEditView groupEditView = new GroupEditView(CellValue);
+            groupEditView.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Hide();
+        }
+
+       
     }
 }
