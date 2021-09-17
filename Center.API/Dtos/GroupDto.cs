@@ -50,10 +50,10 @@ namespace Center.API.Dtos
         public string GroupName { get; set; }
 
 
-        public Guid TeacherId { get; set; }
+        public Guid? TeacherId { get; set; }
 
 
-        public Guid SubjectId { get; set; }
+        public Guid? SubjectId { get; set; }
 
     }
     public class GroupForAddStudents  
