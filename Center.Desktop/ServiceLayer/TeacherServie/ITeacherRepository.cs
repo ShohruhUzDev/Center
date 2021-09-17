@@ -13,7 +13,7 @@ namespace Center.Desktop.ServiceLayer.TeacherServie
         Task<IEnumerable<TeacherViewModel>> GetAllTeachersAsync();
         Task<TeacherViewModel> GetbyIdTeacherAsync(Guid id);
         Task<string> CreateTeacherAsync(TeacherForCreationDto teacher);
-        Task<string> UpdateTeacherAsync(Guid id, Teacher teacher);
+        Task<string> UpdateTeacher(Guid id, ReadTeacherDto teacher);
         Task<string> DeleteTeacher(Guid id);
        // bool ExistTeacher(Guid id);
     }
