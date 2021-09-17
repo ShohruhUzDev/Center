@@ -6,216 +6,167 @@
         xmlns:local="clr-namespace:Center.Desktop.EditViews"
         mc:Ignorable="d"
           xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
+        Loaded="Window_Loaded" 
+        WindowState="Maximized"
         Title="TeacherEditView" Height="700" Width="1200">
     <Grid>
-
-        <StackPanel Background="#FFFFFF">
-            <DockPanel Height="55">
-
-
-                <!--Create Teacher Button-->
-                <!--<Button x:Name="Guruhlar_btn" 
-                        
-                        BorderThickness="0.1"
-                        Height="48" Margin="15 5 30 1"
-                        Background="Transparent" 
-                        md:ButtonAssist.CornerRadius="10"
-                        Width="75" >
-
-                    -->
-                <!--<Grid>
-                        <md:PackIcon
-                            Background="Transparent"
-                            Foreground="Black"
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Top"
-                            Kind="Table" Height="45"
-                            Width="45"/>
-                        <Border
-                            
-                            CornerRadius="10"
-                            Height="64"
-                            BorderThickness="0.1" 
-                            Width="50" 
-                            HorizontalAlignment="Center"
-                            VerticalAlignment="Center"
-                            RenderTransformOrigin="0.704,0.585">
-
-
-                            <md:PackIcon 
-                                Opacity="0.7"
-                                Kind="Plus"
-                                VerticalAlignment="Bottom"
-                                Background="White"
-                                Height="39"
-                                HorizontalAlignment="Right"
-                                Foreground="Black"
-                                Width="34"
-                                Margin="0,0,-4,4">
-
-                            </md:PackIcon>
-
-                        </Border>
-
-                    </Grid>-->
-                <!--
-
-
-                </Button>-->
-
-
-                <!--Search Teacher Textbox-->
+        <StackPanel Background="#FFFFFF" Orientation="Horizontal">
+            <StackPanel HorizontalAlignment="Right" Width="600">
                 <Border
                     CornerRadius="10 " 
                     Height="40" 
-                    BorderThickness="1" 
+                    BorderThickness="0" 
                     BorderBrush="#E3ECEB"
                     HorizontalAlignment="Left"
-                    Width="300"
+                    Width="500"
                     Background="Transparent"
-                    Margin="40 0 0 0 ">
+                    Margin="40 20 10 10 ">
 
 
                     <StackPanel 
-                        Orientation="Horizontal" 
-                        Width="236">
-
-                        <!--<md:PackIcon
-                            HorizontalAlignment="Left"
-                            Kind="Search"
-                            Foreground="Black" 
-                            Opacity="0.6" 
-                            Height="25" 
-                            Width="35"
-                            Margin=" 10 10 0 0 "/>-->
-
-
+                        Orientation="Horizontal" Margin="82,0,-1,0">
+                        <TextBlock 
+                            Text="Ismi"
+                            FontSize="20"
+                            VerticalAlignment="Center"/>
                         <TextBox 
-                            x:Name="SearchGroup_txt"
-                           
-                                 md:HintAssist.Hint="Nomi"
+                            x:Name="FirstName_txt"
                                  md:HintAssist.Foreground="Black"
                                  md:HintAssist.HintOpacity="0.4"
                                  FontSize="20" 
                                  Foreground="Black"
-                                 Width="236" 
+                                 Width="300" 
+                                 Margin="99 0 0 0"
                                  Background="Transparent"
                                  VerticalContentAlignment="Center"
                                  Padding="1" 
-                                 BorderThickness="0" 
-                                 >
-
-                        </TextBox>
+                                 BorderThickness="0"  
+                                 />
 
                     </StackPanel>
+                    
+                    
+                    
 
                 </Border>
 
 
-                <!--Fan buyicha saralash combobox-->
-                <!--<Border 
-                    CornerRadius="10 "
-                    Height="45"
-                    BorderThickness="1"
-                    BorderBrush="Black"
+                <Border
+                    CornerRadius="10 " 
+                    Height="40" 
+                    BorderThickness="0" 
+                    BorderBrush="#E3ECEB"
                     HorizontalAlignment="Left"
-                    Width="150"
-                    Background="Transparent" 
-                    Margin="50 5 10 5">
+                    Width="500"
+                    Background="Transparent"
+                    Margin="40 20 10 10 ">
 
 
-                    <ComboBox
-                        Name="Subjectlar_Cbx"
-                        Width="130"
-                        md:HintAssist.Hint="Fan"
-                        md:HintAssist.Foreground="Indigo"
-                        md:HintAssist.HintOpacity="0.5"
-                        FontSize="13"
-                        
-                       >
+                    <StackPanel 
+                        Orientation="Horizontal" Margin="82,0,-1,0">
+                        <TextBlock 
+                            Text="Familiya"
+                            FontSize="20"
+                            VerticalAlignment="Center"/>
+                        <TextBox 
+                            x:Name="LastName_txt"
+                                 md:HintAssist.Foreground="Black"
+                                 md:HintAssist.HintOpacity="0.4"
+                                 FontSize="20" 
+                                 Foreground="Black"
+                                 Width="300" 
+                                 Margin="65 0 0 0"
+                                 Background="Transparent"
+                                 VerticalContentAlignment="Center"
+                                 Padding="1" 
+                                 BorderThickness="0"  
+                                 />
 
-                    </ComboBox>
-
-
-
-                </Border>-->
-
-                <!--<Border CornerRadius="10 "
-                        Height="45"
-                        BorderThickness="1"
-                        BorderBrush="Black"
-                        HorizontalAlignment="Left"
-                        Width="170"
-                        Background="Transparent"
-                        Margin="15 5 20 5">
+                    </StackPanel>
 
 
-                    <ComboBox 
-                        Name="Teacherlar_Cbx"
-                        md:HintAssist.Hint="O'qituvchi"
-                              md:HintAssist.Foreground="Indigo"
-                              md:HintAssist.HintOpacity="0.5"
-                              FontSize="13"
-                              Width="150"
-                              >
 
 
-                    </ComboBox>
-                </Border>-->
+                </Border>
+
 
                 <Border
                     CornerRadius="10 " 
                     Height="40" 
-                    BorderThickness="1" 
+                    BorderThickness="0" 
                     BorderBrush="#E3ECEB"
                     HorizontalAlignment="Left"
-                    Width="300"
+                    Width="500"
                     Background="Transparent"
-                    Margin="40 0 0 0 ">
+                    Margin="40 20 10 10 ">
 
 
                     <StackPanel 
-                        Orientation="Horizontal" 
-                        Width="236">
-
-                        <!--<md:PackIcon
-                            HorizontalAlignment="Left"
-                            Kind="Search"
-                            Foreground="Black" 
-                            Opacity="0.6" 
-                            Height="25" 
-                            Width="35"
-                            Margin=" 10 10 0 0 "/>-->
-
-
+                        Orientation="Horizontal" Margin="82,0,-1,0">
+                        <TextBlock 
+                            Text="Telefon"
+                            FontSize="20"
+                            VerticalAlignment="Center"/>
                         <TextBox 
                             x:Name="Phone_txt"
-                           
-                                 md:HintAssist.Hint="Telefon"
                                  md:HintAssist.Foreground="Black"
                                  md:HintAssist.HintOpacity="0.4"
                                  FontSize="20" 
                                  Foreground="Black"
-                                 Width="236" 
+                                 Width="300" 
+                                 Margin="75 0 0 0"
                                  Background="Transparent"
                                  VerticalContentAlignment="Center"
                                  Padding="1" 
-                                 BorderThickness="0" 
-                                 >
-
-                        </TextBox>
+                                 BorderThickness="0"  
+                                 />
 
                     </StackPanel>
 
+
+
+
                 </Border>
-                
-                
 
+               
 
-            </DockPanel>
+                <Button x:Name="Save_btn"
+             Click="Save_btn_Click"
+                VerticalAlignment="Bottom"
+                x:FieldModifier="public"
+                Margin="0 370 0 40 "
+                Height="40"
+                Width="350" 
+                md:ShadowAssist.ShadowDepth="Depth3"
+                BorderThickness="2">
 
-            <DataGrid 
+                    <StackPanel Orientation="Horizontal">
+                        <md:PackIcon 
+                        Kind="FileDocumentBoxTick"
+                        HorizontalAlignment="Right"
+                        Height="30"
+                        VerticalAlignment="Center"
+                        Width="30"   />
+
+                        <TextBlock
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        FontSize="20"
+                        Margin="8">
+                    Save
+                        </TextBlock>
+                    </StackPanel>
+
+                </Button>
+
+            </StackPanel>
+            <StackPanel HorizontalAlignment="Left" Width="600">
+                <TextBlock 
+                            Text="Guruhlar ruyhati"
+                            FontSize="25"
+                            VerticalAlignment="Center"
+                    Margin="20"/>
+                <DataGrid 
                 x:Name="Groups_datagrid"
                 HorizontalGridLinesBrush="DarkGray"
                 RowBackground="LightGray"
@@ -223,36 +174,35 @@
                 AutoGenerateColumns="False"
                 IsReadOnly="True"
                 FontSize="15"
-                      Height="505"
+                      Height="450"
                       Margin="10 15 10 10" 
                       BorderThickness="1"
                       BorderBrush="Black" >
-                <DataGrid.Columns>
-                    <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Visibility="Hidden" Width="300" />
-                    <DataGridTextColumn Binding="{Binding GuruhNomi}" Header="Guruh Nomi" Width="150" />
-                    <DataGridTextColumn Binding="{Binding Uqituvchi}" Header="Uqituvchi" Width="150" />
-                    <DataGridTextColumn Binding="{Binding Fan}" Header="Fan" Width="150" />
+                    <DataGrid.Columns>
+                        <DataGridTextColumn  Binding="{Binding Id}" Header="Id" Visibility="Hidden" Width="300" />
+                        <DataGridTextColumn Binding="{Binding GuruhNomi}" Header="Guruh Nomi" Width="250" />
+                        <DataGridTextColumn Binding="{Binding Fan}" Header="Fan" Width="150" />
 
 
 
-                </DataGrid.Columns>
+                    </DataGrid.Columns>
 
-            </DataGrid>
+                </DataGrid>
 
-            <Grid
+                <!--<Grid
                 Width="100"
                 Height="70"
                 HorizontalAlignment="Right"
                 VerticalAlignment="Bottom">
-                <md:PackIcon
+                    <md:PackIcon
                             Background="Transparent"
                             Foreground="Black"
                             HorizontalAlignment="Center"
                             VerticalAlignment="Top"
-                            Kind="Group"
+                            Kind="LearnOutline"
                             Height="55"
                             Width="55"/>
-                <Border
+                    <Border
                             CornerRadius="10"
                             Height="81"
                             BorderThickness="0.1" 
@@ -262,7 +212,7 @@
                             RenderTransformOrigin="0.704,0.585" Margin="-1,-14,0,0">
 
 
-                    <md:PackIcon 
+                        <md:PackIcon 
                                 Opacity="0.7"
                                 Kind="Plus"
                                 VerticalAlignment="Bottom"
@@ -273,13 +223,17 @@
                                 Width="34"
                                 Margin="0,0,-2,3" RenderTransformOrigin="1.326,0.679">
 
-                    </md:PackIcon>
+                        </md:PackIcon>
 
-                </Border>
+                    </Border>
 
-            </Grid>
+                </Grid>-->
+
+            </StackPanel>
+
 
 
         </StackPanel>
+
     </Grid>
 </Window>
