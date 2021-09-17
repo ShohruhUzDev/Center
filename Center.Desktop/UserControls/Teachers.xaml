@@ -7,7 +7,7 @@
              mc:Ignorable="d" 
              xmlns:md="http://materialdesigninxaml.net/winfx/xaml/themes"
       Loaded="UserControl_Loaded"
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="650" d:DesignWidth="800">
     <Grid>
         <StackPanel Background="#FFFFFF">
             <DockPanel Height="55">
@@ -123,13 +123,13 @@
                 IsReadOnly="True"
                 FontSize="15"
                 VerticalAlignment="Center"
-                      Height="355"
+                      Height="555"
                       Margin="10 15 10 10" 
                       BorderThickness="1"
                       BorderBrush="Black" >
                 <DataGrid.Columns>
-                    <DataGridTextColumn  Binding="{Binding Id}" Visibility="Hidden" Header="Id" Width="300" />
-                    <DataGridTextColumn Binding="{Binding Name}" Header="Ismi" Width="150" />
+                    <DataGridTextColumn  Binding="{Binding Id}"  Header="Id" Width="300" />
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Ismi" Width="190" />
                     <DataGridTextColumn Binding="{Binding Phone}" Header="Telefon" Width="150" />
                     <DataGridTemplateColumn Header="" Width="400">
                         <DataGridTemplateColumn.CellTemplate>
@@ -168,7 +168,7 @@
                                     <Button x:Name="Edit_btn"
                                            Margin="0 0 10 0"
                                             Height="35"
-                                           
+                                           Click="Edit_btn_Click"
                                             md:ShadowAssist.ShadowDepth="Depth4"
                                             Background="#FCA130"
                                             md:ButtonAssist.CornerRadius="10"
