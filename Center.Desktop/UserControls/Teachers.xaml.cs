@@ -1,4 +1,6 @@
-﻿using Center.Desktop.ServiceLayer.GroupService;
+﻿using Center.Desktop.EditViews;
+using Center.Desktop.Pages;
+using Center.Desktop.ServiceLayer.GroupService;
 using Center.Desktop.ServiceLayer.GroupService.Concrete;
 using Center.Desktop.ServiceLayer.SubjectService;
 using Center.Desktop.ServiceLayer.SubjectService.Concrete;
@@ -61,6 +63,20 @@ namespace Center.Desktop.UserControls
             var resultteacher = teacherViewModels.Where(i => i.Name.ToUpper().StartsWith(teacher.ToUpper()));
 
             Teacher_datagrid.ItemsSource = resultteacher;
+        }
+
+        private void Edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Teacher_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+
+            TeacherEditView teacherEditView = new TeacherEditView(CellValue);
+            teacherEditView.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Hide();
         }
     }
 }
