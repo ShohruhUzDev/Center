@@ -14,7 +14,7 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
 {
     public class GroupService : IGroupService
     {
-        IMapper mapper;
+       // IMapper mapper;
         public GroupService()
         {
            
@@ -89,7 +89,7 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
                
             using (var client = new HttpClient())
             {
-                client.BaseAddress = new Uri(GroupAPI.Get_URL + $"{groupid}");
+                client.BaseAddress = new Uri(GroupAPI.Get_URL + $"/{groupid}");
                 var res = await client.GetAsync(client.BaseAddress);
                 string response = await res.Content.ReadAsStringAsync();
                 ReadGroup readGroup =(JsonConvert.DeserializeObject<ReadGroup>(response));
@@ -100,7 +100,7 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
                     GuruhNomi=readGroup.GroupName,
                     Fan=(readGroup.Subject is not null)? readGroup.Subject.SubjectName: "Yuq",
                     Uqituvchi=(readGroup.Teacher is not null)? readGroup.Teacher.FirstName+" "+ readGroup.Teacher.LastName:"Yuq",
-                    Students=readGroup.Students
+                    Students=(readGroup.Students is not null)? readGroup.Students:null
                     
                 };
 
@@ -115,7 +115,7 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(GroupAPI.Put_URL + $"{id}");
+                    client.BaseAddress = new Uri(GroupAPI.Put_URL + $"/{id}");
 
                     var sendjson = JsonConvert.SerializeObject(updateGroupDto);
                     StringContent stringContent = new StringContent(sendjson, Encoding.UTF8, "application/json");
