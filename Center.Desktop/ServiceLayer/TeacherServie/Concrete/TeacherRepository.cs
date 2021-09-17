@@ -83,35 +83,50 @@ namespace Center.Desktop.ServiceLayer.TeacherServie.Concrete
            
         }
 
-        public  Task<TeacherViewModel> GetbyIdTeacherAsync(Guid id)
+        public async Task<TeacherViewModel> GetbyIdTeacherAsync(Guid id)
         {
             using(var client=new HttpClient())
             {
-                throw new NotImplementedException();
-                //client.BaseAddress = new Uri(TeacherAPI.Get_URL);
-                //var res = await client.GetAsync(client.BaseAddress + $"/{id}");
-                //string response = await res.Content.ReadAsStringAsync();
-                //Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
-                //return teacher;
+
+                client.BaseAddress = new Uri(TeacherAPI.Get_URL);
+                var res = await client.GetAsync(client.BaseAddress + $"/{id}");
+                string response = await res.Content.ReadAsStringAsync();
+                Teacher teacher = JsonConvert.DeserializeObject<Teacher>(response);
+
+                TeacherViewModel teacherViewModel = new TeacherViewModel();
+                teacherViewModel.Id = teacher.Id;
+                teacherViewModel.Name = teacher.FirstName + " " + teacher.LastName;
+                teacherViewModel.Phone = teacher.Phone;
+                teacherViewModel.Groups = teacher.Groups;
+
+
+
+
+
+                return teacherViewModel;
             }
             
           
         }
 
-        public async Task<string> UpdateTeacherAsync(Guid id, Teacher teacher)
+        public async Task<string> UpdateTeacher(Guid id, ReadTeacherDto teacher)
         {
-            HttpClient client = new HttpClient();
-            client.BaseAddress = new Uri(TeacherAPI.Put_URL+$"/{id}");
-         
-            var json=  JsonConvert.SerializeObject(teacher);
-            StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var res = await client.PutAsync(client.BaseAddress, stringContent);
-            if(res.StatusCode==HttpStatusCode.OK)
+            using (HttpClient client = new HttpClient())
             {
-                return await res.Content.ReadAsStringAsync();
+                client.BaseAddress = new Uri(TeacherAPI.Put_URL + $"/{id}");
+
+                var json = JsonConvert.SerializeObject(teacher);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var res = await client.PutAsync(client.BaseAddress, stringContent);
+                if (res.StatusCode == HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
             }
-            return null;
+            
         }
     }
 }
