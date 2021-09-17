@@ -27,13 +27,13 @@ namespace Center.Desktop.ServiceLayer.GroupService
       
        
         [JsonProperty("Teacher")]
-        public ReadTeacherDto? Teacher { get; set; }
+        public ReadTeacherDto Teacher { get; set; }
 
         [JsonProperty("subjectId")]
         public Guid? SubjectId { get; set; }
 
         [JsonProperty("Subject")]
-        public ReadSubjectDto? Subject { get; set; }
+        public ReadSubjectDto Subject { get; set; }
 
         [JsonProperty("Students")]
 
