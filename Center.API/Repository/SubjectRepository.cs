@@ -48,7 +48,7 @@ namespace Center.API.Data
         public async Task<Subject> GetbyIdSubjectAsync(Guid id)
         {
           
-            return await _centerContext.Subjects.FirstOrDefaultAsync(i => i.Id == id);
+            return await _centerContext.Subjects.Include(u=>u.Groups).FirstOrDefaultAsync(i => i.Id == id);
        
         }
 
