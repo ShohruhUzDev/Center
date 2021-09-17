@@ -99,25 +99,15 @@ namespace Center.API.Data
 
         public async Task<GroupDto> GetbyIdGroupAsync(Guid id)
         {
-            Group grp= await _centercontext.Groups.Include(stu => stu.Students).FirstOrDefaultAsync(i => i.Id == id);
+            GroupDto grp= _mapper.Map<GroupDto>( await _centercontext.Groups.Include(stu => stu.Students).FirstOrDefaultAsync(i => i.Id == id));
 
-            //GroupDto groupDto = new GroupDto();
-            //groupDto.SubjectId = grp.SubjectId;
-            //groupDto.TeacherId = grp.TeacherId;
-            //groupDto.Id = grp.Id;
-            //groupDto.GroupName = grp.GroupName;
 
-            //foreach(var i in grp.Students)
-            //{
-            //    groupDto.Studentlar.Add(new UpdateStudentDto()
-            //    {
-            //        Id=i.Id,
-            //        FirstName=i.FirstName,
-            //        LastName=i.LastName,
-            //        Phone=i.Phone
-            //    });
+            var teacher = await _centercontext.Teachers.FirstOrDefaultAsync(j => j.Id == grp.TeacherId);
+            var subject = await _centercontext.Subjects.FirstOrDefaultAsync(l => l.Id == grp.SubjectId);
 
-            //}
+            grp.Teacher = _mapper.Map<ReadTeacherDto>(teacher);
+            grp.Subject = _mapper.Map<ReadSubjectDto>(subject);
+            
             return _mapper.Map<GroupDto>(grp);
         }
        
