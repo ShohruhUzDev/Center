@@ -76,8 +76,8 @@ namespace Center.API.Controllers
                     throw;
                 }
             }
-            var subj = await _subjectRepository.GetbyIdSubjectAsync(subject.Id);
-            return Ok(subj);
+           // var subj = await _subjectRepository.GetbyIdSubjectAsync(subject.Id);
+            return Ok(subject);
         }
 
         // POST: api/Subjects
