@@ -63,18 +63,18 @@ namespace Center.Desktop.EditViews
 
                 string res = await teacherRepository.UpdateTeacher(ids, updateTeacherDto);
 
-                this.Hide();
-                MainPage mainPage = new MainPage();
-                mainPage.Show();
 
-                //if (res is not null)
-                //{
-                  
-                //}
-                //else
-                //{
-                //    MessageBox.Show("Tizimda xatolik");
-                //}
+
+                if (res is not null)
+                {
+                    this.Hide();
+                    MainPage mainPage = new MainPage();
+                    mainPage.Show();
+                }
+                else
+                {
+                    MessageBox.Show("Tizimda xatolik");
+                }
 
 
 
