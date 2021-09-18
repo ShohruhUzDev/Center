@@ -12,14 +12,37 @@ namespace Center.Desktop.ServiceLayer.StudentService.Concrete
 {
     public class StudentService : IStudentService
     {
-        public Task<string> CreateStudent(CreateStudentDto createStudentDto)
+        public async Task<string> CreateStudent(CreateStudentDto createStudentDto)
         {
-            throw new NotImplementedException();
+           using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(StudentAPI.Post_URL);
+
+                var json = JsonConvert.SerializeObject(createStudentDto);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var res = await client.PostAsync(client.BaseAddress, stringContent);
+                if(res.StatusCode==System.Net.HttpStatusCode.Created)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+            }
         }
 
-        public Task<string> DeleteStudent(Guid id)
+        public async Task<string> DeleteStudent(Guid id)
         {
-            throw new NotImplementedException();
+          using (var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(StudentAPI.Delete_URL + $"/{id}");
+                var res = await client.DeleteAsync(client.BaseAddress);
+
+                if(res.StatusCode==System.Net.HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+            }
         }
 
         public async Task<IEnumerable<StudentViewModel>> GetAllStudentsAsync()
@@ -51,14 +74,48 @@ namespace Center.Desktop.ServiceLayer.StudentService.Concrete
             }
         }
 
-        public Task<StudentViewModel> GetByIdStudentAsync(Guid studentId)
+        public async Task<StudentViewModel> GetByIdStudentAsync(Guid studentId)
         {
-            throw new NotImplementedException();
+           using (var client =new HttpClient())
+            {
+                client.BaseAddress = new Uri(StudentAPI.Get_URL + $"/{studentId}");
+
+                var res = await client.GetAsync(client.BaseAddress);
+                string responce = await res.Content.ReadAsStringAsync();
+
+                ReadStudent readStudent = JsonConvert.DeserializeObject<ReadStudent>(responce);
+
+                StudentViewModel studentViewModel = new StudentViewModel();
+                studentViewModel.Id = readStudent.Id;
+                studentViewModel.FullName = readStudent.FirstName + " " + readStudent.LastName;
+                studentViewModel.Phone = readStudent.Phone;
+                studentViewModel.Groups = readStudent.Groups;
+
+                return studentViewModel;
+
+
+            }
+
         }
 
-        public Task<string> UpdateStudent(UpdateStudentDto updateStudentDto)
+        public async Task<string> UpdateStudent(Guid id, UpdateStudentDto updateStudentDto)
         {
-            throw new NotImplementedException();
+            using (var clien=new HttpClient())
+            {
+                clien.BaseAddress = new Uri(StudentAPI.Put_URL + $"/{id}");
+
+                var json = JsonConvert.SerializeObject(updateStudentDto);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+
+                var res = await clien.PutAsync(clien.BaseAddress, stringContent);
+
+                if(res.StatusCode==System.Net.HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+            }
         }
     }
 }
