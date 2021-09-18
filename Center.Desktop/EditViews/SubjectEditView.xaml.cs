@@ -1,4 +1,6 @@
-﻿using Center.Desktop.ServiceLayer.GroupService;
+﻿using Center.API.Dtos;
+using Center.Desktop.Pages;
+using Center.Desktop.ServiceLayer.GroupService;
 using Center.Desktop.ServiceLayer.GroupService.Concrete;
 using Center.Desktop.ServiceLayer.StudentService;
 using Center.Desktop.ServiceLayer.StudentService.Concrete;
@@ -80,6 +82,50 @@ namespace Center.Desktop.EditViews
 
             //datagridga joylayapmiz
             Groups_datagrid.ItemsSource = groupViewModels;
+        }
+
+        private async void Save_btn_Click(object sender, RoutedEventArgs e)
+        {
+            subjectViewModel = await subjectService.GetByIdSubject(ids);
+
+            if (SubjectName_txt.Text != "" && SubjectPrice_txt.Text != "")
+            {
+
+                ReadSubjectDto readSubjectDto = new ReadSubjectDto();
+                readSubjectDto.Id = subjectViewModel.Id;
+                readSubjectDto.SubjectName = SubjectName_txt.Text;
+                readSubjectDto.Price = Convert.ToInt32( SubjectPrice_txt.Text);
+              
+
+                string res = await subjectService.UpdateSubject(ids, readSubjectDto);
+
+              
+                if (res is not null)
+                {
+                    this.Hide();
+                    MainPage mainPage = new MainPage();
+                    mainPage.Show();
+
+                }
+                else
+                {
+                    MessageBox.Show("Tizimda xatolik");
+                }
+
+
+
+
+            }
+
+            else
+            {
+
+                MessageBox.Show("Malumotlar tuliq kiritilmadi");
+
+            }
+
+
+
         }
     }
 }
