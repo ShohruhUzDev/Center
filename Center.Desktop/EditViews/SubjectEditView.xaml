@@ -95,7 +95,7 @@
 
 
                 <Button x:Name="Save_btn"
-           
+          Click="Save_btn_Click"
                 VerticalAlignment="Bottom"
                 x:FieldModifier="public"
                 Margin="0 370 0 40 "
