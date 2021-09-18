@@ -33,9 +33,19 @@ namespace Center.Desktop.ServiceLayer.SubjectService.Concrete
             }
         }
 
-        public Task<string> DeleteSubject(Guid id)
+        public async Task<string> DeleteSubject(Guid id)
         {
-            throw new NotImplementedException();
+                  using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(SubjectAPI.Delete_URL + $"/{id}");
+                var res = await client.DeleteAsync(client.BaseAddress);
+
+                if(res.StatusCode==System.Net.HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+            }
         }
 
         public async Task<IEnumerable<SubjectViewModel>> GetAllSubjects()
@@ -69,14 +79,50 @@ namespace Center.Desktop.ServiceLayer.SubjectService.Concrete
             }
         }
 
-        public Task<SubjectViewModel> GetByIdSubject(Guid id)
+        public async Task<SubjectViewModel> GetByIdSubject(Guid id)
         {
-            throw new NotImplementedException();
+           using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(SubjectAPI.Get_URL +$"/{id}");
+
+                var res = await client.GetAsync(client.BaseAddress);
+
+                string response = await res.Content.ReadAsStringAsync();
+                ReadSubject readSubject = JsonConvert.DeserializeObject<ReadSubject>(response);
+
+                SubjectViewModel subjectViewModel = new SubjectViewModel();
+                subjectViewModel.Id = readSubject.Id;
+                subjectViewModel.SubjectName = readSubject.SubjectName;
+                subjectViewModel.Price = readSubject.Price;
+                subjectViewModel.Groups = readSubject.Groups;
+
+
+                return subjectViewModel;
+
+
+            }
         }
 
-        public Task<string> UpdateSubject(Guid id, ReadSubjectDto customSubjectDto)
+        public async Task<string> UpdateSubject(Guid id, ReadSubjectDto customSubjectDto)
         {
-            throw new NotImplementedException();
+           using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(SubjectAPI.Put_URL + $"/{id}");
+
+
+                var json = JsonConvert.SerializeObject(customSubjectDto);
+                StringContent stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+
+                var res = await client.PutAsync(client.BaseAddress, stringContent);
+
+
+                if(res.StatusCode==System.Net.HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+
+                return null;
+            }
         }
     }
 }
