@@ -14,6 +14,6 @@ namespace Center.Desktop.ServiceLayer.StudentService
         Task<StudentViewModel> GetByIdStudentAsync(Guid studentId);
         Task<string> CreateStudent(CreateStudentDto createStudentDto);
         Task<string> DeleteStudent(Guid id);
-        Task<string> UpdateStudent(UpdateStudentDto updateStudentDto);
+        Task<string> UpdateStudent(Guid id, UpdateStudentDto updateStudentDto);
     }
 }
