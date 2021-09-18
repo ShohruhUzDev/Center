@@ -79,8 +79,8 @@ namespace Center.API.Controllers
                     throw;
                 }
             }
-            var teach = await _teacherRepository.GetbyIdTeacherAsync(teacher.Id);
-            return Ok(teach);
+            //var teach = await _teacherRepository.GetbyIdTeacherAsync(teacher.Id);
+            return Ok(teacher);
         }
 
         // POST: api/Teachers
