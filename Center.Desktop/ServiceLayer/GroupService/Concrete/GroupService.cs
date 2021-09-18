@@ -44,9 +44,19 @@ namespace Center.Desktop.ServiceLayer.GroupService.Concrete
             }
         }
 
-        public Task<string> DeleteGroup(Guid groupid)
+        public async Task<string> DeleteGroup(Guid groupid)
         {
-            throw new NotImplementedException();
+          using(var client=new HttpClient())
+            {
+                client.BaseAddress = new Uri(GroupAPI.Delete_URL + $"/{groupid}");
+                var res = await client.DeleteAsync(client.BaseAddress);
+
+                if(res.StatusCode==System.Net.HttpStatusCode.OK)
+                {
+                    return await res.Content.ReadAsStringAsync();
+                }
+                return null;
+            }
         }
 
         public async Task<IEnumerable<GroupViewModel>> GetAllGroups()
