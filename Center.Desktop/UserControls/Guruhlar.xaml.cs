@@ -148,7 +148,7 @@ namespace Center.Desktop.Pages.UserControls
 
         }
 
-        private void Delete_btn_Click(object sender, RoutedEventArgs e)
+        private async void Delete_btn_Click(object sender, RoutedEventArgs e)
         {
 
             DataGrid dataGrid = Guruh_datagrid;
@@ -156,11 +156,30 @@ namespace Center.Desktop.Pages.UserControls
             DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
             string CellValue = ((TextBlock)RowAndColumn.Content).Text;
 
-            MessageBox.Show(CellValue);
+            Guid id;
+            bool b = Guid.TryParse(CellValue, out id);
+
+            MessageBoxResult res = MessageBox.Show("Uchirishni hoxlaysizmi?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question);
 
 
+            if (res == MessageBoxResult.Yes)
+            {
+                string result = await _groupService.DeleteGroup(id);
+                if (result is not null)
+                {
+                    MessageBox.Show("Uchirildi");
+                }
+                else
+                {
+                    MessageBox.Show("uchirishda xatolik");
+                }
 
-            
+            }
+
+
+            groupViewModel = await _groupService.GetAllGroups();
+            Guruh_datagrid.ItemsSource = groupViewModel;
+
         }
 
         private void Edit_btn_Click(object sender, RoutedEventArgs e)
