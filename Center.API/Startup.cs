@@ -1,4 +1,5 @@
 using Center.API.Data;
+using Center.API.Extinsions;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -29,11 +30,20 @@ namespace Center.API
         public void ConfigureServices(IServiceCollection services)
         {
 
+
+
+
             services.AddControllers();
-             services.AddTransient<ITeacherRepository, TeacherRepository>();
+
+
+            services.AddAuthentication();
+            services.ConfigureIdentity();
+          //  services.ConfigureJwt(Configuration);
+
+            services.AddTransient<ITeacherRepository, TeacherRepository>();
             services.AddTransient<IGroupRepository, GroupRepository>();
             services.AddTransient<IStudentRepository, StudentRepository>();
-           services.AddTransient<ISubjectRepository, SubjectRepository>();
+            services.AddTransient<ISubjectRepository, SubjectRepository>();
 
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddDbContext<CenterContext>(options => options.UseSqlServer(Configuration.GetConnectionString("SqlserverConnection")));
