@@ -16,7 +16,9 @@ namespace Center.API.Profiles
             CreateMap< Group, GroupDto>().ReverseMap();
             CreateMap< Group, CreateGroupDto>().ReverseMap();
             CreateMap< Group, UpdateGroupDto>().ReverseMap();
-         
+
+
+            CreateMap<ApiUser, UserDto>().ReverseMap();
 
             CreateMap<Student, StudentDto>().ReverseMap();
             CreateMap<Student, CreateStudentDto>().ReverseMap();
