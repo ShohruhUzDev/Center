@@ -30,12 +30,12 @@ namespace Center.API.Data
                .HasOne(p => p.Subject)
                .WithMany(u => u.Groups)
                .OnDelete(DeleteBehavior.SetNull);
-        
-               
-         
+
+            modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
 
-          
+
+
         }
     }
 }
