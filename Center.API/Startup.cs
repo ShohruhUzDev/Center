@@ -69,7 +69,6 @@ namespace Center.API
             app.UseRouting();
 
             app.UseAuthentication();
-
             app.UseAuthorization();
            
 
