@@ -1,4 +1,6 @@
-﻿using Center.Desktop.ServiceLayer.GroupService;
+﻿using Center.Desktop.EditViews;
+using Center.Desktop.Pages;
+using Center.Desktop.ServiceLayer.GroupService;
 using Center.Desktop.ServiceLayer.GroupService.Concrete;
 using Center.Desktop.ServiceLayer.SubjectService;
 using Center.Desktop.ServiceLayer.SubjectService.Concrete;
@@ -67,6 +69,56 @@ namespace Center.Desktop.UserControls
 
             Subject_datagrid.ItemsSource = resultgroup;
 
+        }
+
+        private void Edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Subject_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+
+            SubjectEditView teacherEditView = new SubjectEditView(CellValue);
+            teacherEditView.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Hide();
+        }
+
+        private async void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Subject_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+            Guid id;
+            bool b = Guid.TryParse(CellValue, out id);
+
+            MessageBoxResult res = MessageBox.Show("Uchirishni hoxlaysizmi?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
+            if (res == MessageBoxResult.Yes)
+            {
+                string result = await subjectService.DeleteSubject(id);
+                if (result is not null)
+                {
+                    MessageBox.Show("Uchirildi");
+                }
+                else
+                {
+                    MessageBox.Show("uchirishda xatolik");
+                }
+
+            }
+
+
+
+
+
+
+            subjectViewModel = await subjectService.GetAllSubjects();
+            Subject_datagrid.ItemsSource = subjectViewModel;
         }
     }
 }

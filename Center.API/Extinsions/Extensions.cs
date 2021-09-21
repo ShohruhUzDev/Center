@@ -28,9 +28,9 @@ namespace Center.API.Extinsions
 
         public static void ConfigureJwt(this IServiceCollection services, IConfiguration configuration)
         {
-            var jwtSettings = configuration.GetSection("Jwt");
+           // var jwtSettings = configuration.GetSection("Jwt");
 
-            var key = jwtSettings.GetSection("Key").Value;
+          //  var key = jwtSettings.GetSection("Key").Value;
 
             services.AddAuthentication(options =>
             {
@@ -45,8 +45,8 @@ namespace Center.API.Extinsions
                     ValidateAudience = false,
                     ValidateLifetime = true,
                     ValidateIssuerSigningKey = true,
-                    ValidIssuer = jwtSettings.GetSection("Issuer").Value,
-                    IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
+                  //  ValidIssuer = jwtSettings.GetSection("Issuer").Value,
+                   // IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(key))
                 };
             });
         }

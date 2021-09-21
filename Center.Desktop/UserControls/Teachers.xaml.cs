@@ -78,5 +78,41 @@ namespace Center.Desktop.UserControls
             MainPage mainPage = new MainPage();
             mainPage.Hide();
         }
+
+        private async void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Teacher_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+            Guid id;
+            bool b = Guid.TryParse(CellValue, out id);
+
+            MessageBoxResult res = MessageBox.Show("Uchirishni hoxlaysizmi?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question);
+
+
+            if (res == MessageBoxResult.Yes)
+            {
+                string result = await teacherRepository.DeleteTeacher(id);
+                if (result is not null)
+                {
+                    MessageBox.Show("Uchirildi");
+                }
+                else
+                {
+                    MessageBox.Show("uchirishda xatolik");
+                }
+
+            }
+
+
+
+
+
+
+            teacherViewModels = await teacherRepository.GetAllTeachersAsync();
+            Teacher_datagrid.ItemsSource = teacherViewModels;
+        }
     }
 }

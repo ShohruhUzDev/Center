@@ -1,4 +1,6 @@
-﻿using Center.Desktop.ServiceLayer.GroupService;
+﻿using Center.Desktop.EditViews;
+using Center.Desktop.Pages;
+using Center.Desktop.ServiceLayer.GroupService;
 using Center.Desktop.ServiceLayer.GroupService.Concrete;
 using Center.Desktop.ServiceLayer.StudentService;
 using Center.Desktop.ServiceLayer.StudentService.Concrete;
@@ -65,6 +67,56 @@ namespace Center.Desktop.UserControls
             var res = groupViewModel.Where(i => i.FullName.ToUpper().StartsWith(searchstudent.ToUpper()));
 
             Student_datagrid.ItemsSource = res;
+        }
+
+        private void Edit_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Student_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+
+            StudentEditView studentEditView = new StudentEditView(CellValue);
+            studentEditView.Show();
+            MainPage mainPage = new MainPage();
+            mainPage.Hide();
+        }
+
+        private async void Delete_btn_Click(object sender, RoutedEventArgs e)
+        {
+            DataGrid dataGrid = Student_datagrid;
+            DataGridRow Row = (DataGridRow)dataGrid.ItemContainerGenerator.ContainerFromIndex(dataGrid.SelectedIndex);
+            DataGridCell RowAndColumn = (DataGridCell)dataGrid.Columns[0].GetCellContent(Row).Parent;
+            string CellValue = ((TextBlock)RowAndColumn.Content).Text;
+
+            Guid id;
+            bool b = Guid.TryParse(CellValue, out id);
+
+            MessageBoxResult res = MessageBox.Show("Uchirishni hoxlaysizmi?", "Information", MessageBoxButton.YesNo, MessageBoxImage.Question);
+            
+            
+            if(res==MessageBoxResult.Yes)
+            {
+               string result= await studentService.DeleteStudent(id);
+                if(result is not null)
+                {
+                    MessageBox.Show("Uchirildi");
+                }
+                else
+                {
+                    MessageBox.Show("uchirishda xatolik");
+                }
+
+            }
+
+           
+
+
+           
+
+            groupViewModel = await studentService.GetAllStudentsAsync();
+            Student_datagrid.ItemsSource = groupViewModel;
         }
     }
 }

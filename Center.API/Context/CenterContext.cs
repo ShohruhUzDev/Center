@@ -1,4 +1,5 @@
 ﻿using Center.API.Models;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -7,9 +8,9 @@ using System.Threading.Tasks;
 
 namespace Center.API.Data
 {
-    public class CenterContext : DbContext
+    public class CenterContext : IdentityDbContext<ApiUser>
     {
-        public CenterContext(DbContextOptions<CenterContext> options):base(options)
+        public CenterContext(DbContextOptions<CenterContext> options) : base(options)
         {
 
         }
@@ -31,7 +32,7 @@ namespace Center.API.Data
                .WithMany(u => u.Groups)
                .OnDelete(DeleteBehavior.SetNull);
 
-            modelBuilder.ApplyConfiguration(new RoleConfiguration());
+            // modelBuilder.ApplyConfiguration(new RoleConfiguration());
 
 
 

@@ -1,5 +1,5 @@
 using Center.API.Data;
-using Center.API.Extinsions;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -37,7 +37,7 @@ namespace Center.API
 
 
             services.AddAuthentication();
-            services.ConfigureIdentity();
+          //  services.ConfigureIdentity();
           //  services.ConfigureJwt(Configuration);
 
             services.AddTransient<ITeacherRepository, TeacherRepository>();
@@ -68,7 +68,10 @@ namespace Center.API
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+           
 
             app.UseEndpoints(endpoints =>
             {
