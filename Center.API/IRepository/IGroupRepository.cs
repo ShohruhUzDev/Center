@@ -12,7 +12,7 @@ namespace Center.API.Data
     {
         Task<IEnumerable<GroupDto>> GetAllGroupsAsync();
         Task<GroupDto> GetbyIdGroupAsync(Guid id);
-        Task CreateGroupAsync(  Group group);
+        Task CreateGroupAsync( Group group);
         Task UpdateGroupAsync(Group group);
         Task DeleteGroup(Guid id);
         bool ExistGroup(Guid id);

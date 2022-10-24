@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Center.API.Data
 {
-    public class CenterContext : IdentityDbContext<ApiUser>
+    public class CenterContext :IdentityDbContext<ApiUser>
     {
         public CenterContext(DbContextOptions<CenterContext> options) : base(options)
         {
@@ -23,6 +23,7 @@ namespace Center.API.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
+            base.OnModelCreating(modelBuilder);
             modelBuilder.Entity<Group>()
                 .HasOne(p => p.Teacher)
                 .WithMany(u => u.Groups)

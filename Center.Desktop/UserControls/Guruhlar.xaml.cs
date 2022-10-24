@@ -60,7 +60,7 @@ namespace Center.Desktop.Pages.UserControls
 
 
 
-            groupViewModel = await _groupService.GetAllGroups();
+          groupViewModel = await _groupService.GetAllGroups();
 
             Guruh_datagrid.ItemsSource = groupViewModel;
 

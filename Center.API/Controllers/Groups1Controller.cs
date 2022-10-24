@@ -36,8 +36,8 @@ namespace Center.API.Controllers
             var group= await _groupRepository.GetAllGroupsAsync();
             
             
-          //  return Ok(_mapper.Map<IEnumerable<GroupDto>>(group));
-            return Ok(group);
+            return Ok(_mapper.Map<IEnumerable<GroupDto>>(group));
+           //return Ok(group);
         }
 
         // GET: api/Groups1/5
