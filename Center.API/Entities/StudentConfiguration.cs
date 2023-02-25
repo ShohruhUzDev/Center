@@ -7,5 +7,6 @@ namespace Center.API.Entities
 {
     public class StudentConfiguration
     {
+        public int MyProperty { get; set; }
     }
 }
